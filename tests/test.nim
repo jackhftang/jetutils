@@ -13,4 +13,8 @@ test "can add":
   check add(5, 5) == 10
 
 test "can bsearch":
-  check bsearch(0,10, proc (x:int):bool = x <= 5) == (5,6)
+  let res = bsearch(-10, 20) do (x : auto) -> auto : x <= 5
+  check res == (5,6)
+
+test "can sieve":
+  check sieve(10) == @[2,3,5,7]
