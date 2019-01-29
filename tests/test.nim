@@ -6,15 +6,17 @@
 # To run these tests, simply execute `nimble test`.
 
 import unittest
-
 import jetutils
 
 test "can add":
   check add(5, 5) == 10
 
 test "can bsearch":
-  let res = bsearch(-10, 20) do (x : auto) -> auto : x <= 5
+  let res = bsearch(-10, 20) do (x : int) -> bool : x <= 5
   check res == (5,6)
 
-test "can sieve":
-  check sieve(10) == @[2,3,5,7]
+test "sieve result is same as rabinMiller" : 
+  let arr = sieve 100000
+  for i in 0 ..< arr.len: 
+    let r = rabinMiller i
+    check arr[i] == r 
