@@ -1,0 +1,4 @@
+pow	jetutils/arithmetic.html#pow,T,Natural	arithmetic: pow[T: SomeInteger](x: T; n: Natural): T	
+pow	jetutils/arithmetic.html#pow,T,T,Positive	arithmetic: pow[T: SomeInteger](x, n: T; m: Positive): T	
+factorial	jetutils/arithmetic.html#factorial,Natural	arithmetic: factorial(n: Natural): int	
+factorial	jetutils/arithmetic.html#factorial,Natural,Positive	arithmetic: factorial(n: Natural; m: Positive): int	

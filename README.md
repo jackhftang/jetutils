@@ -1,3 +1,6 @@
 # jetutils
 
-A collection of data-structure and algorithm as a process of learning Nim
+An opinionated collection of data-structure and algorithm for productivity. 
+
+
+

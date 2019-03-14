@@ -1,0 +1,3 @@
+bsearchMax	jetutils/control.html#bsearchMax,T,T,proc(T)	control: bsearchMax[T: Ordinal](a, b: T; prediate: proc (mi: T): bool {.closure.}): T	
+bsearchMin	jetutils/control.html#bsearchMin,T,T,proc(T)	control: bsearchMin[T: Ordinal](a, b: T; prediate: proc (mi: T): bool {.closure.}): T	
+times	jetutils/control.html#times.t,int,untyped	control: times(n: int; body: untyped)	

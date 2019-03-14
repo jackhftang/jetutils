@@ -1,0 +1,4 @@
+reverse	jetutils/array.html#reverse,openArray[T]	array: reverse[T](arr: var openArray[T])	
+reverse	jetutils/array.html#reverse.i,openArray[T]	array: reverse[T](arr: openArray[T]): T	
+argmin	jetutils/array.html#argmin,openArray[T]	array: argmin[T](arr: openArray[T]): int	
+argmax	jetutils/array.html#argmax,openArray[T]	array: argmax[T](arr: openArray[T]): int	
