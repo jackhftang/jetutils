@@ -1,5 +1,6 @@
 import unittest
 import jetutils
+import tables
 
 test "bsearchMax":
   let res = bsearchMax(0, 10) do (n:int) -> bool: n*n < 10
@@ -49,7 +50,6 @@ test "pow with modulo":
         check pow(b,n,m) == t mod m
         t *= b mod m 
 
-
 test "argmin":
   let a = [2,3,1,4]
   check argmin(a) == 2 
@@ -57,4 +57,38 @@ test "argmin":
 test "argmin should return -1 if array is empty":
   let a: seq[int] = @[]
   check argmin(a) == -1
+
+test "fac":
+  check fac(0) == 1
+  check fac(10) == 3628800
+
+test "binom":
+  for i,n in [1,2,1]:
+    check binom(2,i) == n
+  for i,n in [1,3,3,1]:
+    check binom(3,i) == n
+  for i,n in [1,10,45,120,210,252,210,120,45,10,1]:
+    check binom(10,i) == n
+  
+test "extgcd":
+  for v in [(3,5,2,-1), (23,101,22,-5)]:
+    let (a,b,m,n) = v
+    var x,y = 0
+    let g = extgcd(a,b,x,y)
+    check g == 1 
+    check x == m 
+    check y == n
+
+test "inv":
+  for m in [2,3,5,7,101]:
+    for i in 1 ..< m:
+      let t = inv(i,m)
+      check (i*t mod m) == 1
+
+test "groupBy":
+  let x = [(1,2),(1,3),(2,4),(3,5)]
+  let y = x.groupBy do (x:auto) -> auto: x[0]
+  assert y[1] == @[(1,2),(1,3)]
+  assert y[2] == @[(2,4)]
+  assert y[3] == @[(3,5)]
 

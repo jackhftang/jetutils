@@ -1,4 +1,8 @@
+extgcd	jetutils/arithmetic.html#extgcd,T,T,T,T	arithmetic: extgcd[T: SomeInteger](a, b: T; x, y: var T): T	
+inv	jetutils/arithmetic.html#inv,T,T	arithmetic: inv[T: Positive](n, m: T): T	
 pow	jetutils/arithmetic.html#pow,T,Natural	arithmetic: pow[T: SomeInteger](x: T; n: Natural): T	
 pow	jetutils/arithmetic.html#pow,T,T,Positive	arithmetic: pow[T: SomeInteger](x, n: T; m: Positive): T	
-factorial	jetutils/arithmetic.html#factorial,Natural	arithmetic: factorial(n: Natural): int	
-factorial	jetutils/arithmetic.html#factorial,Natural,Positive	arithmetic: factorial(n: Natural; m: Positive): int	
+fac	jetutils/arithmetic.html#fac,T	arithmetic: fac[T: Natural](n: T): T	
+fac	jetutils/arithmetic.html#fac,T,Positive	arithmetic: fac[T: Natural](n: T; m: Positive): T	
+binom	jetutils/arithmetic.html#binom,T,T	arithmetic: binom[T: Natural](n, r: T): T	
+binom	jetutils/arithmetic.html#binom,T,T,Positive	arithmetic: binom[T: Natural](n, r: T; m: Positive): T	

@@ -1247,6 +1247,8 @@ function main() {
     title="argmin[T](arr: openArray[T]): int"><wbr />argmin<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#argmax%2CopenArray%5BT%5D"
     title="argmax[T](arr: openArray[T]): int"><wbr />argmax<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#groupBy%2CopenArray%5BU%5D%2Cproc%28U%29"
+    title="groupBy[T, U](arr: openArray[U]; group: proc (x: U): T): TableRef[T, seq[U]]"><wbr />group<wbr />By<span class="attachedType" style="visibility:hidden"></span></a></li>
 
   </ul>
 </li>
@@ -1286,6 +1288,12 @@ Find the minimum index of minimum value in an array. Return -1 if empty.
 Find the maximum index of maximum value in an array. Return -1 if empty. 
 
 </dd>
+<a id="groupBy,openArray[U],proc(U)"></a>
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">groupBy</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">,</span> <span class="Identifier">U</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">arr</span><span class="Other">:</span> <span class="Identifier">openArray</span><span class="Other">[</span><span class="Identifier">U</span><span class="Other">]</span><span class="Other">;</span> <span class="Identifier">group</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">x</span><span class="Other">:</span> <span class="Identifier">U</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">TableRef</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">,</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">U</span><span class="Other">]</span><span class="Other">]</span></pre></dt>
+<dd>
+
+
+</dd>
 
 </dl></div>
 <div class="section" id="15">
@@ -1307,7 +1315,7 @@ Reverse iterator
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2019-03-14 04:18:16 UTC</small>
+        <small>Made with Nim. Generated: 2019-03-14 05:43:03 UTC</small>
       </div>
     </div>
   </div>

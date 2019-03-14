@@ -1,3 +1,21 @@
+proc extgcd*[T:SomeInteger](a, b: T; x, y: var T): T =
+  ## Extended GCD 
+  if b == 0: 
+    x = 1
+    y = 0 
+    result = a 
+  else:
+    result = extgcd(b, a mod b, y, x)
+    y -= (a div b) * x
+
+proc inv*[T:Positive](n, m: T): T = 
+  ## Modulo inverse
+  var x: T 
+  let g = extgcd(m, n, x, result) 
+  assert g == 1, "No multiplicative inverse"
+  if unlikely(g < 0): result = -result 
+  if unlikely(result < 0): result += m 
+
 proc pow*[T:SomeInteger](x:T, n: Natural): T =
   result = 1
   var
@@ -11,7 +29,9 @@ proc pow*[T:SomeInteger](x:T, n: Natural): T =
 
 proc pow*[T:SomeInteger](x, n: T, m: Positive): T =
   ## integer power with modulo m
-  # todo: support negative value 
+  if n < 0:
+    return pow(inv(x,m), -n, m)
+      
   result = 1
   var 
     t = x mod m 
@@ -22,11 +42,30 @@ proc pow*[T:SomeInteger](x, n: T, m: Positive): T =
     t = t * t mod m 
     b = b shr 1 
 
-proc factorial*(n: Natural): int = 
+proc fac*[T: Natural](n: T): T = 
+  ## Factorial O(n)
   result = 1
   for i in 2..n: result *= i 
 
-proc factorial*(n: Natural, m: Positive): int = 
+proc fac*[T: Natural](n: T, m: Positive): T = 
+  ## Factorial O(n)
   result = 1
   for i in 2..n: result = result * i mod m
+
+proc binom*[T: Natural](n,r: T): T = 
+  ## Binomial O(min(r,n-r))
+  if r < 0 or r > n: 
+    return 0
+  result = 1 
+  let t = min(r,n-r)
+  for i in 1..t: result = result * (n+1-i) div i 
+
+proc binom*[T: Natural](n,r: T, m: Positive): T = 
+  ## Binomial O(min(r,n-r))
+  if r < 0 or r > n: 
+    return 0
+  result = 1 
+  let t = min(r,n-r)
+  for i in 1..t: result = result * (n+1-i) div i 
+
 

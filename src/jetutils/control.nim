@@ -25,7 +25,7 @@ proc bsearchMin*[T:Ordinal](a, b: T, prediate: proc (mi: T): bool  {.closure.}):
   return up.T
 
 template times*(n:int, body:untyped) = 
-  ## repeat block of code N times
+  ## Repeat block of code N times.
   ## Example:
   ##
   ## .. code-block:: nim

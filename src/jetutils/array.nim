@@ -1,3 +1,5 @@
+import tables
+
 proc reverse*[T](arr: var openArray[T]) = 
   ## Reverse an array in-place
   var 
@@ -34,3 +36,12 @@ proc argmax*[T](arr: openArray[T]): int =
     if arr[i] >= val:
       result = i 
       val = arr[i] 
+
+proc groupBy*[T,U](arr: openArray[U], group: proc(x:U): T): TableRef[T,seq[U]] = 
+  result = newTable[T,seq[U]](rightSize(arr.len))
+  for x in arr:
+    let g = group(x)
+    if result.contains g: result[g].add(x)
+    else: result[g] = @[x]
+
+
