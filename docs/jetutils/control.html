@@ -1242,16 +1242,40 @@ function main() {
   <a class="reference reference-toplevel" href="#12" id="62">Procs</a>
   <ul class="simple simple-toc-section">
       <li><a class="reference" href="#bsearchMax%2CT%2CT%2Cproc%28T%29"
-    title="bsearchMax[T: Ordinal](a, b: T; prediate: proc (mi: T): bool {.closure.}): T"><wbr />bsearch<wbr />Max<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="bsearchMax[T: Ordinal](a, b: T; predicate: proc (mi: T): bool {.closure.}): T"><wbr />bsearch<wbr />Max<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#bsearchMin%2CT%2CT%2Cproc%28T%29"
-    title="bsearchMin[T: Ordinal](a, b: T; prediate: proc (mi: T): bool {.closure.}): T"><wbr />bsearch<wbr />Min<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="bsearchMin[T: Ordinal](a, b: T; predicate: proc (mi: T): bool {.closure.}): T"><wbr />bsearch<wbr />Min<span class="attachedType" style="visibility:hidden"></span></a></li>
+
+  </ul>
+</li>
+<li>
+  <a class="reference reference-toplevel" href="#15" id="65">Iterators</a>
+  <ul class="simple simple-toc-section">
+      <li><a class="reference" href="#..%3C.i%2CT"
+    title="`..&lt;`[T](b: T): T"><wbr />`..&lt;`<span class="attachedType" style="visibility:hidden"></span></a></li>
+
+  </ul>
+</li>
+<li>
+  <a class="reference reference-toplevel" href="#17" id="67">Macros</a>
+  <ul class="simple simple-toc-section">
+      <li><a class="reference" href="#forSum.m%2Cvarargs%5Buntyped%5D"
+    title="forSum(args: varargs[untyped]): untyped"><wbr />for<wbr />Sum<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#forProd.m%2Cvarargs%5Buntyped%5D"
+    title="forProd(args: varargs[untyped]): untyped"><wbr />for<wbr />Prod<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#forMin.m%2Cvarargs%5Buntyped%5D"
+    title="forMin(args: varargs[untyped]): untyped"><wbr />for<wbr />Min<span class="attachedType" style="visibility:hidden"></span></a></li>
 
   </ul>
 </li>
 <li>
   <a class="reference reference-toplevel" href="#18" id="68">Templates</a>
   <ul class="simple simple-toc-section">
-      <li><a class="reference" href="#times.t%2Cint%2Cuntyped"
+      <li><a class="reference" href="#bsearchMaxIt.t%2Ctyped%2Ctyped%2Cuntyped"
+    title="bsearchMaxIt(a, b: typed; code: untyped): untyped"><wbr />bsearch<wbr />Max<wbr />It<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#bsearchMinIt.t%2Ctyped%2Ctyped%2Cuntyped"
+    title="bsearchMinIt(a, b: typed; code: untyped): untyped"><wbr />bsearch<wbr />Min<wbr />It<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#times.t%2Cint%2Cuntyped"
     title="times(n: int; body: untyped)"><wbr />times<span class="attachedType" style="visibility:hidden"></span></a></li>
 
   </ul>
@@ -1267,7 +1291,7 @@ function main() {
 <h1><a class="toc-backref" href="#12">Procs</a></h1>
 <dl class="item">
 <a id="bsearchMax,T,T,proc(T)"></a>
-<dt><pre><span class="Keyword">proc</span> <span class="Identifier">bsearchMax</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">Ordinal</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">a</span><span class="Other">,</span> <span class="Identifier">b</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">;</span> <span class="Identifier">prediate</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">mi</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">closure</span></span><span class="Other">.}</span></span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span></pre></dt>
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">bsearchMax</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">Ordinal</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">a</span><span class="Other">,</span> <span class="Identifier">b</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">;</span> <span class="Identifier">predicate</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">mi</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">closure</span></span><span class="Other">.}</span></span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span></pre></dt>
 <dd>
 <p>Find the maximum value mx between [a,b) such that <cite>predicate(mx)</cite> is true</p>
 <p>NOTE: It is assumed that <cite>predicate(a)</cite> is always true. In case all values in [a,b) yield false, a is returned.</p>
@@ -1275,7 +1299,7 @@ function main() {
 
 </dd>
 <a id="bsearchMin,T,T,proc(T)"></a>
-<dt><pre><span class="Keyword">proc</span> <span class="Identifier">bsearchMin</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">Ordinal</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">a</span><span class="Other">,</span> <span class="Identifier">b</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">;</span> <span class="Identifier">prediate</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">mi</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">closure</span></span><span class="Other">.}</span></span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span></pre></dt>
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">bsearchMin</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">Ordinal</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">a</span><span class="Other">,</span> <span class="Identifier">b</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">;</span> <span class="Identifier">predicate</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">mi</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">closure</span></span><span class="Other">.}</span></span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span></pre></dt>
 <dd>
 <p>Find the minimum value mi between (a,b] such that <cite>predicate(mi)</cite> is true</p>
 <p>NOTE: It is assumed that <cite>predicate(b)</cite> is always true. In case all values in (a,b] yield false, b is returned.</p>
@@ -1284,13 +1308,103 @@ function main() {
 </dd>
 
 </dl></div>
+<div class="section" id="15">
+<h1><a class="toc-backref" href="#15">Iterators</a></h1>
+<dl class="item">
+<a id="..<.i,T"></a>
+<dt><pre><span class="Keyword">iterator</span> <span class="Identifier">`..&lt;`</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">b</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span></pre></dt>
+<dd>
+only high part need to be specified<pre class="listing"><span class="Keyword">for</span> <span class="Identifier">i</span> <span class="Keyword">in</span> <span class="Operator">..&lt;</span> <span class="Identifier">arr</span><span class="Operator">.</span><span class="Identifier">len</span><span class="Punctuation">:</span>
+  <span class="Identifier">echo</span> <span class="Identifier">arr</span><span class="Punctuation">[</span><span class="Identifier">i</span><span class="Punctuation">]</span></pre>
+
+</dd>
+
+</dl></div>
+<div class="section" id="17">
+<h1><a class="toc-backref" href="#17">Macros</a></h1>
+<dl class="item">
+<a id="forSum.m,varargs[untyped]"></a>
+<dt><pre><span class="Keyword">macro</span> <span class="Identifier">forSum</span><span class="Other">(</span><span class="Identifier">args</span><span class="Other">:</span> <span class="Identifier">varargs</span><span class="Other">[</span><span class="Identifier">untyped</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
+<dd>
+transform to a serial of  <cite>for</cite> statement<blockquote><p><dl class="docutils"><dt>forSum i in 1..10, &quot;abcd&quot;:</dt>
+<dd>echo i</dd>
+</dl>
+</p></blockquote>
+<p>equivalent to</p>
+<blockquote><p><dl class="docutils"><dt>for i in 1..10:</dt>
+<dd>echo i</dd>
+<dt>for i in &quot;abcd&quot;:</dt>
+<dd>echo i</dd>
+</dl>
+</p></blockquote>
+
+
+</dd>
+<a id="forProd.m,varargs[untyped]"></a>
+<dt><pre><span class="Keyword">macro</span> <span class="Identifier">forProd</span><span class="Other">(</span><span class="Identifier">args</span><span class="Other">:</span> <span class="Identifier">varargs</span><span class="Other">[</span><span class="Identifier">untyped</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
+<dd>
+<p>Transform to nested <cite>for</cite> statement</p>
+<p>Example:</p>
+<blockquote><p><dl class="docutils"><dt>forProd i,j,k in 1..10, &quot;abc&quot;, [false, true]:</dt>
+<dd>echo i, &quot; &quot;, j, &quot; &quot;, k</dd>
+</dl>
+</p></blockquote>
+<p>transform to</p>
+<blockquote><p><dl class="docutils"><dt>for i in 1..10:</dt>
+<dd><dl class="docutils"><dt>for j in &quot;abc&quot;:</dt>
+<dd><dl class="docutils"><dt>for k in [false, true]:</dt>
+<dd>echo i, &quot; &quot;, j, &quot; &quot;, k</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</p></blockquote>
+
+
+</dd>
+<a id="forMin.m,varargs[untyped]"></a>
+<dt><pre><span class="Keyword">macro</span> <span class="Identifier">forMin</span><span class="Other">(</span><span class="Identifier">args</span><span class="Other">:</span> <span class="Identifier">varargs</span><span class="Other">[</span><span class="Identifier">untyped</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
+<dd>
+<p>Each iterators need to have len() implementation</p>
+<p>Example:</p>
+<blockquote><p><dl class="docutils"><dt>forMin i,j in [1,2,3], &quot;abc&quot;:</dt>
+<dd>echo i, j</dd>
+</dl>
+</p></blockquote>
+<p>transform to</p>
+<blockquote><p><dl class="docutils"><dt>block:</dt>
+<dd>let sym1 = [1,2,3] let sym2 = &quot;abc&quot; let sym3 = min(ident1.len,ident2.len)<dl class="docutils"><dt>for sym4 in 0 ..&lt; sym3:</dt>
+<dd>let i = sym1[ident4] let j = sym2[ident4] echo i, j</dd>
+</dl>
+</dd>
+</dl>
+</p></blockquote>
+<p>symbols (sym1,sym2,sym3,sym4) are uniquely generated </p>
+
+
+</dd>
+
+</dl></div>
 <div class="section" id="18">
 <h1><a class="toc-backref" href="#18">Templates</a></h1>
 <dl class="item">
+<a id="bsearchMaxIt.t,typed,typed,untyped"></a>
+<dt><pre><span class="Keyword">template</span> <span class="Identifier">bsearchMaxIt</span><span class="Other">(</span><span class="Identifier">a</span><span class="Other">,</span> <span class="Identifier">b</span><span class="Other">:</span> <span class="Identifier">typed</span><span class="Other">;</span> <span class="Identifier">code</span><span class="Other">:</span> <span class="Identifier">untyped</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
+<dd>
+
+
+</dd>
+<a id="bsearchMinIt.t,typed,typed,untyped"></a>
+<dt><pre><span class="Keyword">template</span> <span class="Identifier">bsearchMinIt</span><span class="Other">(</span><span class="Identifier">a</span><span class="Other">,</span> <span class="Identifier">b</span><span class="Other">:</span> <span class="Identifier">typed</span><span class="Other">;</span> <span class="Identifier">code</span><span class="Other">:</span> <span class="Identifier">untyped</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
+<dd>
+
+
+</dd>
 <a id="times.t,int,untyped"></a>
 <dt><pre><span class="Keyword">template</span> <span class="Identifier">times</span><span class="Other">(</span><span class="Identifier">n</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">body</span><span class="Other">:</span> <span class="Identifier">untyped</span><span class="Other">)</span></pre></dt>
 <dd>
-repeat block of code N times Example:<pre class="listing"><span class="FloatNumber">3.</span><span class="Identifier">times</span> <span class="Keyword">do</span><span class="Punctuation">:</span>
+Repeat block of code N times. Example:<pre class="listing"><span class="FloatNumber">3.</span><span class="Identifier">times</span> <span class="Keyword">do</span><span class="Punctuation">:</span>
   <span class="Identifier">echo</span> <span class="StringLit">&quot;ho&quot;</span></pre>
 
 </dd>
@@ -1304,7 +1418,7 @@ repeat block of code N times Example:<pre class="listing"><span class="FloatNumb
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2019-03-14 05:43:03 UTC</small>
+        <small>Made with Nim. Generated: 2019-03-19 15:20:12 UTC</small>
       </div>
     </div>
   </div>
