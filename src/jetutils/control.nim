@@ -47,7 +47,7 @@ template times*(n:int, body:untyped) =
     body
 
 iterator `..<`*[T](b: T): T =
-  ## only high part need to be specified 
+  ## Only high part need to be specified 
   ## 
   ## .. code-block:: nim 
   ##  for i in ..< arr.len: 
