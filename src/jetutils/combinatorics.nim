@@ -1,4 +1,6 @@
 iterator combination*(m, n: int): seq[int] =
+  ## combination of taking n element from [0..m-1]
+
   var c = newSeq[int](n)
   for i in 0 ..< n: c[i] = i
  

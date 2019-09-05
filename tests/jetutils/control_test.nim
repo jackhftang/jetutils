@@ -26,7 +26,7 @@ suite "control":
 
   test "times":
     var cnt = 0
-    3.times do: 
+    3.times: 
       cnt += 1
     check cnt == 3
 

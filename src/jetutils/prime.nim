@@ -31,7 +31,7 @@ proc rabinMiller*(n: Natural): bool =
     s += 1
     d = d shr 1 
 
-  ## valid up to 318,665,857,834,031,151,167,461 ~= 3.1e23 > 2^64
+  # valid up to 318,665,857,834,031,151,167,461 ~= 3.1e23 > 2^64
   let bases = [2,3,5,7,11,13,17,19,23,29,31,37]
   for p in bases:
     if p == n: return true 

@@ -41,7 +41,7 @@ template times*(n:int, body:untyped) =
   ## Example:
   ##
   ## .. code-block:: nim
-  ##  3.times do:
+  ##  3.times:
   ##    echo "ho"
   for i in 1..n:
     body
