@@ -1,2 +1,0 @@
-sieve	jetutils/prime.html#sieve,Natural	prime: sieve(mx: Natural): seq[bool]	
-rabinMiller	jetutils/prime.html#rabinMiller,Natural	prime: rabinMiller(n: Natural): bool	

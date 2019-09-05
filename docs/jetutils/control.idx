@@ -1,9 +1,0 @@
-bsearchMaxIt	jetutils/control.html#bsearchMaxIt.t,typed,typed,untyped	control: bsearchMaxIt(a, b: typed; code: untyped): untyped	
-bsearchMax	jetutils/control.html#bsearchMax,T,T,proc(T)	control: bsearchMax[T: Ordinal](a, b: T; predicate: proc (mi: T): bool {.closure.}): T	
-bsearchMinIt	jetutils/control.html#bsearchMinIt.t,typed,typed,untyped	control: bsearchMinIt(a, b: typed; code: untyped): untyped	
-bsearchMin	jetutils/control.html#bsearchMin,T,T,proc(T)	control: bsearchMin[T: Ordinal](a, b: T; predicate: proc (mi: T): bool {.closure.}): T	
-times	jetutils/control.html#times.t,int,untyped	control: times(n: int; body: untyped)	
-`..&lt;`	jetutils/control.html#..<.i,T	control: `..&lt;`[T](b: T): T	
-forSum	jetutils/control.html#forSum.m,varargs[untyped]	control: forSum(args: varargs[untyped]): untyped	
-forProd	jetutils/control.html#forProd.m,varargs[untyped]	control: forProd(args: varargs[untyped]): untyped	
-forMin	jetutils/control.html#forMin.m,varargs[untyped]	control: forMin(args: varargs[untyped]): untyped	
