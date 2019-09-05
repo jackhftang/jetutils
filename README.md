@@ -1,6 +1,12 @@
 # jetutils
 
+[![build status](https://travis-ci.com/jackhftang/jetutils.svg?branch=master)](https://travis-ci.org/jackhftang/jetutils)
+
 A collection of data-structure and algorithm.
+
+## Documentation
+
+Please go to [here](https://jackhftang.github.io/jetutils/jetutils.html)
 
 ## Licnese 
 
