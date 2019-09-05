@@ -831,8 +831,10 @@ function main() {
     title="forSum(args: varargs[untyped]): untyped"><wbr />for<wbr />Sum<span class="attachedType"></span></a></li>
   <li><a class="reference" href="#forProd.m%2Cvarargs%5Buntyped%5D"
     title="forProd(args: varargs[untyped]): untyped"><wbr />for<wbr />Prod<span class="attachedType"></span></a></li>
-  <li><a class="reference" href="#forMin.m%2Cvarargs%5Buntyped%5D"
-    title="forMin(args: varargs[untyped]): untyped"><wbr />for<wbr />Min<span class="attachedType"></span></a></li>
+  <li><a class="reference" href="#forZip.m%2Cvarargs%5Buntyped%5D"
+    title="forZip(args: varargs[untyped]): untyped"><wbr />for<wbr />Zip<span class="attachedType"></span></a></li>
+  <li><a class="reference" href="#%7C%3E.m%2Cuntyped%2Cuntyped"
+    title="`|&gt;`(x, f: untyped): untyped"><wbr />`|&gt;`<span class="attachedType"></span></a></li>
 
   </ul>
 </li>
@@ -845,6 +847,8 @@ function main() {
     title="bsearchMinIt(a, b: typed; code: untyped): untyped"><wbr />bsearch<wbr />Min<wbr />It<span class="attachedType"></span></a></li>
   <li><a class="reference" href="#times.t%2Cint%2Cuntyped"
     title="times(n: int; body: untyped)"><wbr />times<span class="attachedType"></span></a></li>
+  <li><a class="reference" href="#forIt.t%2Ctyped%2Cuntyped"
+    title="forIt(xs: typed; body: untyped): untyped"><wbr />for<wbr />It<span class="attachedType"></span></a></li>
 
   </ul>
 </li>
@@ -937,8 +941,8 @@ transform to a serial of  <tt class="docutils literal"><span class="pre">for</sp
 
 
 </dd>
-<a id="forMin.m,varargs[untyped]"></a>
-<dt><pre><span class="Keyword">macro</span> <a href="#forMin.m%2Cvarargs%5Buntyped%5D"><span class="Identifier">forMin</span></a><span class="Other">(</span><span class="Identifier">args</span><span class="Other">:</span> <span class="Identifier">varargs</span><span class="Other">[</span><span class="Identifier">untyped</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
+<a id="forZip.m,varargs[untyped]"></a>
+<dt><pre><span class="Keyword">macro</span> <a href="#forZip.m%2Cvarargs%5Buntyped%5D"><span class="Identifier">forZip</span></a><span class="Other">(</span><span class="Identifier">args</span><span class="Other">:</span> <span class="Identifier">varargs</span><span class="Other">[</span><span class="Identifier">untyped</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
 <dd>
 
 <p>Each iterators need to have len() implementation</p>
@@ -957,6 +961,13 @@ transform to a serial of  <tt class="docutils literal"><span class="pre">for</sp
 </p></blockquote>
 <p>symbols (sym1,sym2,sym3,sym4) are uniquely generated </p>
 
+
+</dd>
+<a id="|>.m,untyped,untyped"></a>
+<dt><pre><span class="Keyword">macro</span> <a href="#%7C%3E.m%2Cuntyped%2Cuntyped"><span class="Identifier">`|&gt;`</span></a><span class="Other">(</span><span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">f</span><span class="Other">:</span> <span class="Identifier">untyped</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
+<dd>
+
+infix operator of function application f(x)
 
 </dd>
 
@@ -986,6 +997,18 @@ Repeat block of code N times. Example:<pre class="listing"><span class="FloatNum
   <span class="Identifier">echo</span> <span class="StringLit">&quot;ho&quot;</span></pre>
 
 </dd>
+<a id="forIt.t,typed,untyped"></a>
+<dt><pre><span class="Keyword">template</span> <a href="#forIt.t%2Ctyped%2Cuntyped"><span class="Identifier">forIt</span></a><span class="Other">(</span><span class="Identifier">xs</span><span class="Other">:</span> <span class="Identifier">typed</span><span class="Other">;</span> <span class="Identifier">body</span><span class="Other">:</span> <span class="Identifier">untyped</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
+<dd>
+
+iterate over xs with default variable named <tt class="docutils literal"><span class="pre">it</span></tt>
+<p><strong class="examples_text">Examples:</strong></p>
+<pre class="listing"><span class="Keyword">var</span> <span class="Identifier">i</span> <span class="Other">=</span> <span class="DecNumber">0</span>
+<span class="Other">(</span><span class="Operator">..</span><span class="DecNumber">10</span><span class="Other">)</span><span class="Other">.</span><span class="Identifier">forIt</span><span class="Other">:</span>
+  <span class="Identifier">assert</span> <span class="Identifier">it</span> <span class="Operator">==</span> <span class="Identifier">i</span>
+  <span class="Identifier">inc</span> <span class="Identifier">i</span></pre>
+
+</dd>
 
 </dl></div>
 
@@ -996,7 +1019,7 @@ Repeat block of code N times. Example:<pre class="listing"><span class="FloatNum
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2019-09-05 14:20:50 UTC</small>
+        <small>Made with Nim. Generated: 2019-09-05 15:46:49 UTC</small>
       </div>
     </div>
   </div>

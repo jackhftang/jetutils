@@ -1,19 +1,27 @@
-import unittest, ../../src/jetutils
+import unittest, ../../src/jetutils, algorithm
+import algorithm
 
 suite "array": 
 
+  test "each":
+    var 
+      arr = [1,2,3]
+      i = 1
+    arr.each do (x:int): 
+      check x == i
+      inc i
+
+  test "reverse()":
+    var b = [1,2,3]
+    b.reverse()
+    require b == [3,2,1]
+
   test "reverse iterator":
-    let a = [1,2,3]
-
-    # copy and in-place reverse 
-    var b = a
-    b.reverse 
-
-    # iterator should be the same as array
-    var i = 0 
-    for e in a.reverse: 
-      check e == b[i]
-      i.inc 
+    let x = [1,2,3]
+    var i = 3
+    for e in x.reverse: 
+      check e == i
+      dec i
 
   test "groupBy":
     let x = [(1,2),(1,3),(2,4),(3,5)]

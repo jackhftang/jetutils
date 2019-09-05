@@ -6,7 +6,7 @@ A collection of data-structure and algorithm.
 
 ## Documentation
 
-Please go to [here](https://jackhftang.github.io/jetutils/jetutils.html)
+Please go [here](https://jackhftang.github.io/jetutils/jetutils.html)
 
 ## Licnese 
 

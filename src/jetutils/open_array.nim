@@ -1,17 +1,16 @@
-import tables
-
-proc reverse*[T](arr: var openArray[T]) = 
-  ## Reverse an array in-place
-  var 
-    i = arr.low 
-    j = arr.high 
-  while i < j: 
-    swap(arr[i], arr[j])
-    i.inc 
-    j.dec
+import tables, algorithm 
+export algorithm.reverse
 
 iterator reverse*[T](arr: openArray[T]): T = 
   ## Reverse iterator 
+  runnableExamples:
+    var 
+      i = 0
+      y = [3,2,1]
+    for x in [1,2,3].reverse: 
+      assert x == y[i]
+      inc i 
+
   var i = arr.high
   while arr.low <= i: 
     yield arr[i] 
@@ -44,4 +43,11 @@ proc groupBy*[T,U](arr: openArray[U], group: proc(x:U): T): TableRef[T,seq[U]] =
     if result.contains g: result[g].add(x)
     else: result[g] = @[x]
 
-
+proc each*[T](xs: openArray[T], f: proc(x: T)) =
+  ## similar to for statement, but accept a procedure
+  runnableExamples:
+    var i = 1
+    [1,2,3].each proc (x:int) =
+      assert x == i
+      inc i
+  for x in xs: f(x) 

@@ -43,24 +43,33 @@ proc pow*[T:SomeInteger](x, n: T, m: Positive): T =
     b = b shr 1 
 
 proc fac*[T: Natural](n: T): T = 
-  ## Factorial O(n)
+  ## Factorial of n. O(n)
+  runnableExamples:
+    assert fac(3) == 6
   result = 1
   for i in 2..n: result *= i 
 
 proc fac*[T: Natural](n: T, m: Positive): T = 
-  ## Factorial O(n)
+  ## Factorial of n with modulo m. O(n)
   result = 1
   for i in 2..n: result = result * i mod m
 
-proc binom*[T: Natural](n,r: T): T = 
+proc binomial*[T: Natural](n,r: T): T = 
   ## Binomial O(min(r,n-r))
+  runnableExamples:
+    assert binomial(5,0) == 1
+    assert binomial(5,1) == 5
+    assert binomial(5,2) == 10
+    assert binomial(5,3) == 10
+    assert binomial(5,4) == 5
+    assert binomial(5,5) == 1
   if r < 0 or r > n: 
     return 0
   result = 1 
   let t = min(r,n-r)
   for i in 1..t: result = result * (n+1-i) div i 
 
-proc binom*[T: Natural](n,r: T, m: Positive): T = 
+proc binomial*[T: Natural](n,r: T, m: Positive): T = 
   ## Binomial O(min(r,n-r))
   if r < 0 or r > n: 
     return 0

@@ -821,10 +821,10 @@ function main() {
     title="fac[T: Natural](n: T): T"><wbr />fac<span class="attachedType"></span></a></li>
   <li><a class="reference" href="#fac%2CT%2CPositive"
     title="fac[T: Natural](n: T; m: Positive): T"><wbr />fac<span class="attachedType"></span></a></li>
-  <li><a class="reference" href="#binom%2CT%2CT"
-    title="binom[T: Natural](n, r: T): T"><wbr />binom<span class="attachedType"></span></a></li>
-  <li><a class="reference" href="#binom%2CT%2CT%2CPositive"
-    title="binom[T: Natural](n, r: T; m: Positive): T"><wbr />binom<span class="attachedType"></span></a></li>
+  <li><a class="reference" href="#binomial%2CT%2CT"
+    title="binomial[T: Natural](n, r: T): T"><wbr />binomial<span class="attachedType"></span></a></li>
+  <li><a class="reference" href="#binomial%2CT%2CT%2CPositive"
+    title="binomial[T: Natural](n, r: T; m: Positive): T"><wbr />binomial<span class="attachedType"></span></a></li>
 
   </ul>
 </li>
@@ -871,25 +871,34 @@ integer power with modulo m
 <dt><pre><span class="Keyword">proc</span> <a href="#fac%2CT"><span class="Identifier">fac</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">Natural</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">n</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span></pre></dt>
 <dd>
 
-Factorial O(n)
+Factorial of n. O(n)
+<p><strong class="examples_text">Examples:</strong></p>
+<pre class="listing"><span class="Identifier">assert</span> <span class="Identifier">fac</span><span class="Other">(</span><span class="DecNumber">3</span><span class="Other">)</span> <span class="Operator">==</span> <span class="DecNumber">6</span></pre>
 
 </dd>
 <a id="fac,T,Positive"></a>
 <dt><pre><span class="Keyword">proc</span> <a href="#fac%2CT%2CPositive"><span class="Identifier">fac</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">Natural</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">n</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">;</span> <span class="Identifier">m</span><span class="Other">:</span> <span class="Identifier">Positive</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span></pre></dt>
 <dd>
 
-Factorial O(n)
+Factorial of n with modulo m. O(n)
 
 </dd>
-<a id="binom,T,T"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#binom%2CT%2CT"><span class="Identifier">binom</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">Natural</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">n</span><span class="Other">,</span> <span class="Identifier">r</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span></pre></dt>
+<a id="binomial,T,T"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#binomial%2CT%2CT"><span class="Identifier">binomial</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">Natural</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">n</span><span class="Other">,</span> <span class="Identifier">r</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span></pre></dt>
 <dd>
 
 Binomial O(min(r,n-r))
+<p><strong class="examples_text">Examples:</strong></p>
+<pre class="listing"><span class="Identifier">assert</span> <span class="Identifier">binomial</span><span class="Other">(</span><span class="DecNumber">5</span><span class="Other">,</span> <span class="DecNumber">0</span><span class="Other">)</span> <span class="Operator">==</span> <span class="DecNumber">1</span>
+<span class="Identifier">assert</span> <span class="Identifier">binomial</span><span class="Other">(</span><span class="DecNumber">5</span><span class="Other">,</span> <span class="DecNumber">1</span><span class="Other">)</span> <span class="Operator">==</span> <span class="DecNumber">5</span>
+<span class="Identifier">assert</span> <span class="Identifier">binomial</span><span class="Other">(</span><span class="DecNumber">5</span><span class="Other">,</span> <span class="DecNumber">2</span><span class="Other">)</span> <span class="Operator">==</span> <span class="DecNumber">10</span>
+<span class="Identifier">assert</span> <span class="Identifier">binomial</span><span class="Other">(</span><span class="DecNumber">5</span><span class="Other">,</span> <span class="DecNumber">3</span><span class="Other">)</span> <span class="Operator">==</span> <span class="DecNumber">10</span>
+<span class="Identifier">assert</span> <span class="Identifier">binomial</span><span class="Other">(</span><span class="DecNumber">5</span><span class="Other">,</span> <span class="DecNumber">4</span><span class="Other">)</span> <span class="Operator">==</span> <span class="DecNumber">5</span>
+<span class="Identifier">assert</span> <span class="Identifier">binomial</span><span class="Other">(</span><span class="DecNumber">5</span><span class="Other">,</span> <span class="DecNumber">5</span><span class="Other">)</span> <span class="Operator">==</span> <span class="DecNumber">1</span></pre>
 
 </dd>
-<a id="binom,T,T,Positive"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#binom%2CT%2CT%2CPositive"><span class="Identifier">binom</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">Natural</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">n</span><span class="Other">,</span> <span class="Identifier">r</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">;</span> <span class="Identifier">m</span><span class="Other">:</span> <span class="Identifier">Positive</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span></pre></dt>
+<a id="binomial,T,T,Positive"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#binomial%2CT%2CT%2CPositive"><span class="Identifier">binomial</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">Natural</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">n</span><span class="Other">,</span> <span class="Identifier">r</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">;</span> <span class="Identifier">m</span><span class="Other">:</span> <span class="Identifier">Positive</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span></pre></dt>
 <dd>
 
 Binomial O(min(r,n-r))
@@ -905,7 +914,7 @@ Binomial O(min(r,n-r))
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2019-09-05 14:20:50 UTC</small>
+        <small>Made with Nim. Generated: 2019-09-05 15:46:47 UTC</small>
       </div>
     </div>
   </div>

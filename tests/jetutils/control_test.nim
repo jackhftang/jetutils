@@ -33,9 +33,14 @@ suite "control":
   test "..< 10": 
     var i = 0
     for j in ..< 10:
-      assert i == j 
-      i.inc 
-    assert i == 10 
+      check j == i
+      inc i
+
+  test "..< 10u":
+    var i : uint = 0
+    for j in ..< 10u:
+      check j == i
+      inc i
 
   test "forSum":
     var res = ""
@@ -55,9 +60,29 @@ suite "control":
     assert res == [(1,'a'),(1,'b'),(2,'a'),(2,'b')]
     assert n == 4
 
-  test "forMin":
-    forMin i,j in [1,2,3], [4,5,6]:
+  test "forZip i,j in [1,2,3], [4,5,6]":
+    forZip i,j in [1,2,3], [4,5,6]:
       assert i + 3 == j
 
-    forMin i,j in [1,2,3], "abcdefg":
+  test "forZip i,j in [1,2,3] \"abcdefg\"":
+    forZip i,j in [1,2,3], "abcdefg":
       assert i + ord('a') == ord(j) + 1
+
+  test "forIt [1,2,3]":
+    var i = 1
+    [1,2,3].forIt:
+      check it == i
+      inc i
+
+  test "forIt ..10":
+    var i = 0
+    (..10).forIt: 
+      check it == i
+      inc i
+    check i == 11
+
+  test "3 |> double |> plus1": 
+    proc double(x: int): int = 2*x
+    proc plus1(x: int): int = x + 1
+    let y = 3 |> double |> plus1
+    require y == 7

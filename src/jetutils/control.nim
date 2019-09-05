@@ -57,7 +57,6 @@ iterator `..<`*[T](b: T): T =
     yield i
     inc i
 
-
 macro forSum*(args: varargs[untyped]): untyped = 
   ## transform to a serial of  `for` statement 
   ##
@@ -74,10 +73,10 @@ macro forSum*(args: varargs[untyped]): untyped =
   ##    echo i
 
   # deal with the in operator 
-  assert args[0].kind == nnkInfix
-  assert args[0].len == 3 
+  expectKind(args[0], nnkInfix)
+  expectLen(args[0], 3) 
   assert args[0][0].strVal == "in"
-  assert args[0][1].kind == nnkIdent, "the first argument must be identifier"
+  expectKind(args[0][1], nnkIdent)
 
   let ident = args[0][1] 
   var iterators = @[args[0][2]]
@@ -165,7 +164,7 @@ macro forProd*(args: varargs[untyped]): untyped =
     
   result = forStmt
 
-macro forMin*(args: varargs[untyped]): untyped = 
+macro forZip*(args: varargs[untyped]): untyped = 
   ## Each iterators need to have len() implementation
   ## 
   ## Example:
@@ -257,3 +256,15 @@ macro forMin*(args: varargs[untyped]): untyped =
   stmts.add forStmt
   result = newBlockStmt(stmts)
   
+template forIt*(xs: typed, body: untyped): untyped = 
+  ## iterate over xs with default variable named `it`
+  runnableExamples:
+    var i = 0
+    (..10).forIt: 
+      assert it == i
+      inc i
+  for it {.inject.} in xs: body
+
+macro `|>`*(x, f : untyped): untyped = 
+  ## infix operator of function application f(x)
+  newCall(f,x)
