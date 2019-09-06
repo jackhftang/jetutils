@@ -1,3 +1,5 @@
+import algorithm
+
 iterator combination*(m, n: int): seq[int] =
   ## combination of taking n element from [0..m-1]
 
@@ -21,3 +23,13 @@ iterator combination*(m, n: int): seq[int] =
       # down: reset to leaf
       inc c[i]
       for j in i+1 ..< n: c[j] = c[j-1] + 1 
+
+iterator permutation*(n: int): seq[int] = 
+  ## permutation iterator
+  var res = newSeq[int](n)
+  for i in 0 ..< n: res[i] = i
+  var cont = true
+  while cont:
+    yield res
+    cont = nextPermutation(res)
+  

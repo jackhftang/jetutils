@@ -31,3 +31,19 @@ suite "combinatorics":
       check xs == res[i]
       inc i
 
+  test "permutation(3)":
+    var res : seq[seq[int]]= @[]
+    for xs in permutation(3):
+      res.add(xs)
+    res.sort()
+    check res == @[
+      @[0,1,2],
+      @[0,2,1],
+      @[1,0,2],
+      @[1,2,0],
+      @[2,0,1],
+      @[2,1,0],
+    ]
+    
+    
+

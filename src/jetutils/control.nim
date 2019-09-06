@@ -170,7 +170,7 @@ macro forZip*(args: varargs[untyped]): untyped =
   ## Example:
   ## 
   ## ..code-block: nim
-  ##  forMin i,j in [1,2,3], "abc":
+  ##  forZip i,j in [1,2,3], "abc":
   ##    echo i, j
   ## 
   ## transform to

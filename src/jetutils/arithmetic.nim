@@ -70,7 +70,7 @@ proc binomial*[T: Natural](n,r: T): T =
   for i in 1..t: result = result * (n+1-i) div i 
 
 proc binomial*[T: Natural](n,r: T, m: Positive): T = 
-  ## Binomial O(min(r,n-r))
+  ## Binomial with modulo m. O(min(r,n-r))
   if r < 0 or r > n: 
     return 0
   result = 1 

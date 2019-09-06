@@ -1,5 +1,22 @@
-import tables, algorithm 
-export algorithm.reverse
+import tables
+
+proc cmp*[T](a,b: openArray[T]): int =
+  runnableExamples:
+    assert cmp(@[1,2],@[2,1]) == -1
+    assert cmp(@[2,1],@[1,2]) == 1
+    assert cmp(@[1,2],@[1,2,3]) == -1
+    assert cmp(@[1,2,3],@[1,2]) == 1
+  let 
+    la = a.len
+    lb = b.len
+  result = 0 
+  for i in 0 ..< min(la,lb):
+    let c = cmp(a[i], b[i])
+    if c != 0: return c
+  if la < lb: return -1
+  if la > lb: return 1
+
+proc `<`*[T](a,b: openArray[T]): bool = cmp(a,b) < 0
 
 iterator reverse*[T](arr: openArray[T]): T = 
   ## Reverse iterator 
