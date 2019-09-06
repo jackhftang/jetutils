@@ -54,22 +54,22 @@ proc fac*[T: Natural](n: T, m: Positive): T =
   result = 1
   for i in 2..n: result = result * i mod m
 
-proc binomial*[T: Natural](n,r: T): T = 
+proc binom*[T: Natural](n,r: T): T = 
   ## Binomial O(min(r,n-r))
   runnableExamples:
-    assert binomial(5,0) == 1
-    assert binomial(5,1) == 5
-    assert binomial(5,2) == 10
-    assert binomial(5,3) == 10
-    assert binomial(5,4) == 5
-    assert binomial(5,5) == 1
+    assert binom(5,0) == 1
+    assert binom(5,1) == 5
+    assert binom(5,2) == 10
+    assert binom(5,3) == 10
+    assert binom(5,4) == 5
+    assert binom(5,5) == 1
   if r < 0 or r > n: 
     return 0
   result = 1 
   let t = min(r,n-r)
   for i in 1..t: result = result * (n+1-i) div i 
 
-proc binomial*[T: Natural](n,r: T, m: Positive): T = 
+proc binom*[T: Natural](n,r: T, m: Positive): T = 
   ## Binomial with modulo m. O(min(r,n-r))
   if r < 0 or r > n: 
     return 0

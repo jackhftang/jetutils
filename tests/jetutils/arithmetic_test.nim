@@ -29,13 +29,13 @@ suite "arithmetic":
     check fac(3) == 6
     check fac(10) == 3628800
 
-  test "binomial":
+  test "binom":
     for i,n in [1,2,1]:
-      check binomial(2,i) == n
+      check binom(2,i) == n
     for i,n in [1,3,3,1]:
-      check binomial(3,i) == n
+      check binom(3,i) == n
     for i,n in [1,10,45,120,210,252,210,120,45,10,1]:
-      check binomial(10,i) == n
+      check binom(10,i) == n
     
   test "extgcd":
     for v in [(3,5,2,-1), (23,101,22,-5)]:

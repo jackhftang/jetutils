@@ -26,6 +26,7 @@ iterator combination*(m, n: int): seq[int] =
 
 iterator permutation*(n: int): seq[int] = 
   ## permutation iterator
+  # todo: use heaps algorithm
   var res = newSeq[int](n)
   for i in 0 ..< n: res[i] = i
   var cont = true
