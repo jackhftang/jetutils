@@ -32,7 +32,7 @@ suite "combinatorics":
       inc i
 
   test "permutation(3)":
-    var res : seq[seq[int]]= @[]
+    var res : seq[seq[int]] = @[]
     for xs in permutation(3):
       res.add(xs)
     res.sort()
