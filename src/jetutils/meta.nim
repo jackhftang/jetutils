@@ -17,6 +17,11 @@ template vectorize*(f,T,S: untyped): untyped =
   runnableExamples:
     vectorize(`+`,int,int)
     assert [1,2] + [3,4] == @[4,6]
+  runnableExamples:
+    vectorize(`+`,int,int)
+    vectorize(`*`,int,int)
+    let x = [1,2,3]
+    assert (1+x) * 4 == 4 + 4*x
   type
     outType = typeof(f(new(T)[], new(S)[]))
   proc `f`(xs: openArray[T], ys: openArray[S]): seq[outType] =
@@ -24,3 +29,9 @@ template vectorize*(f,T,S: untyped): untyped =
     if l != ys.len: raise newException(ValueError, "cannot vectorize over unequal length")
     result = newSeq[outType](l)
     for i in 0 ..< l: result[i] = f(xs[i], ys[i])
+  proc `f`(xs: openArray[T], y: S): seq[outType] =
+    result = newSeq[outType](xs.len)
+    for i in 0 ..< xs.len: result[i] = f(xs[i], y)
+  proc `f`(x: T, ys: openArray[S]): seq[outType] =
+    result = newSeq[outType](ys.len)
+    for i in 0 ..< ys.len: result[i] = f(x, ys[i])
