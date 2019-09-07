@@ -29,3 +29,8 @@ suite "array":
     assert y[1] == @[(1,2),(1,3)]
     assert y[2] == @[(2,4)]
     assert y[3] == @[(3,5)]
+
+  test "liftSeq":
+    proc double(x: int): int = 2*x
+    let y = @[1,2,3] |> liftSeq double
+    check y == @[2,4,6]
