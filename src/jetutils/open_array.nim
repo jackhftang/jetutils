@@ -67,6 +67,11 @@ proc liftSeq*[T,S](f: proc (x: T): S {.closure.}): proc(xs: seq[T]): seq[S] =
     proc double(x: int): int = 2*x
     let y = @[1,2,3] |> liftSeq double
     assert y == @[2,4,6]
+  runnableExamples:
+    template `|>`(x, f : untyped): untyped = f(x)
+    proc double(x:int): int = 2*x 
+    let y = @[@[1,2,3], @[4,5]] |> liftSeq (liftSeq double)
+    assert y == @[@[2, 4, 6], @[8, 10]]
   result = proc (xs: seq[T]): seq[S] = 
     for x in xs: result.add(f(x))
   
