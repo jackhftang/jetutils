@@ -15,7 +15,7 @@ template bsearchMaxIt*(a, b: typed, code: untyped): untyped =
 proc bsearchMax*[T:Ordinal](a, b: T, predicate: proc (mi: T): bool  {.closure.}): T = 
   ## Find the maximum value mx between [a,b) such that `predicate(mx)` is true
   ##
-  ## NOTE: It is assumed that `predicate(a)` is always true. In case all values in [a,b) yield false, a is returned.
+  ## NOTE: It is assumed that `predicate(a)` is always true. In case all values in [a+1,b] yield false, a is returned.
   bsearchMaxIt(a,b,predicate it)
 
 template bsearchMinIt*(a, b: typed, code: untyped): untyped = 
@@ -33,7 +33,7 @@ template bsearchMinIt*(a, b: typed, code: untyped): untyped =
 proc bsearchMin*[T:Ordinal](a, b: T, predicate: proc (mi: T): bool  {.closure.}): T = 
   ## Find the minimum value mi between (a,b] such that `predicate(mi)` is true
   ##
-  ## NOTE: It is assumed that `predicate(b)` is always true. In case all values in (a,b] yield false, b is returned.
+  ## NOTE: It is assumed that `predicate(b)` is always true. In case all values in [a,b-1] yield false, b is returned.
   bsearchMinIt(a,b,predicate it)
 
 template times*(n:int, body:untyped) = 
@@ -134,10 +134,10 @@ macro forProd*(args: varargs[untyped]): untyped =
   assert idents.len == n-1, "too many identifiers"
 
   # deal with the in operator 
-  assert args[i].kind == nnkInfix
-  assert args[i].len == 3 
+  expectKind(args[i], nnkInfix)
+  expectLen(args[i], 3)
   assert args[i][0].strVal == "in"
-  assert args[i][1].kind == nnkIdent
+  expectKind(args[i][1], nnkIdent)
   idents.add(args[i][1])
 
   # get iterators
@@ -177,17 +177,15 @@ macro forZip*(args: varargs[untyped]): untyped =
   ## 
   ## ..code-block: nim 
   ##  block: 
-  ##    let sym1 = [1,2,3]
-  ##    let sym2 = "abc"
-  ##    let sym3 = min(ident1.len,ident2.len)
-  ##    for sym4 in 0 ..< sym3:
-  ##      let i = sym1[ident4]
-  ##      let j = sym2[ident4]
+  ##    let 
+  ##      l = min(ident1.len,ident2.len)
+  ##      lis1 = [1,2,3]
+  ##      lis2 = "abc"
+  ##    for ix in 0 ..< l:
+  ##      let i = sym1[ix]
+  ##      let j = sym2[ix]
   ##      echo i, j
   ##      
-  ## symbols (sym1,sym2,sym3,sym4) are uniquely generated
-  ##
-
   var i = 0
   var idents : seq[NimNode] = @[]
     
@@ -207,10 +205,10 @@ macro forZip*(args: varargs[untyped]): untyped =
   assert idents.len == n-1, "too many identifiers"
 
   # deal with the in operator 
-  assert args[i].kind == nnkInfix
-  assert args[i].len == 3 
+  expectKind(args[i], nnkInfix)
+  expectLen(args[i], 3) 
   assert args[i][0].strVal == "in"
-  assert args[i][1].kind == nnkIdent
+  expectKind(args[i][1], nnkIdent)
   idents.add(args[i][1])
 
   # get iterators

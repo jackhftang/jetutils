@@ -885,7 +885,7 @@ function main() {
 <dd>
 
 <p>Find the maximum value mx between [a,b) such that <tt class="docutils literal"><span class="pre">predicate(mx)</span></tt> is true</p>
-<p>NOTE: It is assumed that <tt class="docutils literal"><span class="pre">predicate(a)</span></tt> is always true. In case all values in [a,b) yield false, a is returned.</p>
+<p>NOTE: It is assumed that <tt class="docutils literal"><span class="pre">predicate(a)</span></tt> is always true. In case all values in [a+1,b] yield false, a is returned.</p>
 
 
 </dd>
@@ -894,7 +894,7 @@ function main() {
 <dd>
 
 <p>Find the minimum value mi between (a,b] such that <tt class="docutils literal"><span class="pre">predicate(mi)</span></tt> is true</p>
-<p>NOTE: It is assumed that <tt class="docutils literal"><span class="pre">predicate(b)</span></tt> is always true. In case all values in (a,b] yield false, b is returned.</p>
+<p>NOTE: It is assumed that <tt class="docutils literal"><span class="pre">predicate(b)</span></tt> is always true. In case all values in [a,b-1] yield false, b is returned.</p>
 
 
 </dd>
@@ -970,13 +970,14 @@ transform to a serial of  <tt class="docutils literal"><span class="pre">for</sp
 </p></blockquote>
 <p>transform to</p>
 <blockquote><p><dl class="docutils"><dt>block:</dt>
-<dd>let sym1 = [1,2,3] let sym2 = &quot;abc&quot; let sym3 = min(ident1.len,ident2.len)<dl class="docutils"><dt>for sym4 in 0 ..&lt; sym3:</dt>
-<dd>let i = sym1[ident4] let j = sym2[ident4] echo i, j</dd>
+<dd><dl class="docutils"><dt>let</dt>
+<dd>l = min(ident1.len,ident2.len) lis1 = [1,2,3] lis2 = &quot;abc&quot;</dd>
+<dt>for ix in 0 ..&lt; l:</dt>
+<dd>let i = sym1[ix] let j = sym2[ix] echo i, j</dd>
 </dl>
 </dd>
 </dl>
 </p></blockquote>
-<p>symbols (sym1,sym2,sym3,sym4) are uniquely generated </p>
 
 
 </dd>
@@ -1036,7 +1037,7 @@ iterate over xs with default variable named <tt class="docutils literal"><span c
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2019-09-07 07:17:15 UTC</small>
+        <small>Made with Nim. Generated: 2019-09-07 08:34:49 UTC</small>
       </div>
     </div>
   </div>

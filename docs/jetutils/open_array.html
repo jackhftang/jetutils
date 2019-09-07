@@ -834,8 +834,8 @@ function main() {
     title="argmin[T](arr: openArray[T]): int"><wbr />argmin<span class="attachedType"></span></a></li>
   <li><a class="reference" href="#argmax%2CopenArray%5BT%5D"
     title="argmax[T](arr: openArray[T]): int"><wbr />argmax<span class="attachedType"></span></a></li>
-  <li><a class="reference" href="#groupBy%2CopenArray%5BU%5D%2Cproc%28U%29"
-    title="groupBy[T, U](arr: openArray[U]; group: proc (x: U): T): TableRef[T, seq[U]]"><wbr />group<wbr />By<span class="attachedType"></span></a></li>
+  <li><a class="reference" href="#groupBy%2CopenArray%5BS%5D%2Cproc%28S%29"
+    title="groupBy[T, S](arr: openArray[S]; group: proc (x: S): T): TableRef[T, seq[S]]"><wbr />group<wbr />By<span class="attachedType"></span></a></li>
   <li><a class="reference" href="#liftSeq%2Cproc%28T%29"
     title="liftSeq[T, S](f: proc (x: T): S {.closure.}): proc (xs: seq[T]): seq[S]"><wbr />lift<wbr />Seq<span class="attachedType"></span></a></li>
   <li><a class="reference" href="#each%2CopenArray%5BT%5D%2Cproc%28T%29"
@@ -866,7 +866,7 @@ function main() {
 <dt><pre><span class="Keyword">proc</span> <a href="#cmp%2CopenArray%5BT%5D%2CopenArray%5BT%5D"><span class="Identifier">cmp</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">a</span><span class="Other">,</span> <span class="Identifier">b</span><span class="Other">:</span> <span class="Identifier">openArray</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span></pre></dt>
 <dd>
 
-
+compare elements from left to right until the first unequal, shorter and smaller.
 <p><strong class="examples_text">Examples:</strong></p>
 <pre class="listing"><span class="Identifier">assert</span> <span class="Identifier">cmp</span><span class="Other">(</span><span class="Operator">@</span><span class="Other">[</span><span class="DecNumber">1</span><span class="Other">,</span> <span class="DecNumber">2</span><span class="Other">]</span><span class="Other">,</span> <span class="Operator">@</span><span class="Other">[</span><span class="DecNumber">2</span><span class="Other">,</span> <span class="DecNumber">1</span><span class="Other">]</span><span class="Other">)</span> <span class="Operator">==</span> <span class="Operator">-</span><span class="DecNumber">1</span>
 <span class="Identifier">assert</span> <span class="Identifier">cmp</span><span class="Other">(</span><span class="Operator">@</span><span class="Other">[</span><span class="DecNumber">2</span><span class="Other">,</span> <span class="DecNumber">1</span><span class="Other">]</span><span class="Other">,</span> <span class="Operator">@</span><span class="Other">[</span><span class="DecNumber">1</span><span class="Other">,</span> <span class="DecNumber">2</span><span class="Other">]</span><span class="Other">)</span> <span class="Operator">==</span> <span class="DecNumber">1</span>
@@ -878,7 +878,7 @@ function main() {
 <dt><pre><span class="Keyword">proc</span> <a href="#%3C%2CopenArray%5BT%5D%2CopenArray%5BT%5D"><span class="Identifier">`&lt;`</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">a</span><span class="Other">,</span> <span class="Identifier">b</span><span class="Other">:</span> <span class="Identifier">openArray</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span></pre></dt>
 <dd>
 
-
+equivalent to <tt class="docutils literal"><span class="pre">cmp(a,b) &lt; 0</span></tt>
 
 </dd>
 <a id="argmin,openArray[T]"></a>
@@ -895,11 +895,22 @@ Find the minimum index of minimum value in an array. Return -1 if empty.
 Find the maximum index of maximum value in an array. Return -1 if empty. 
 
 </dd>
-<a id="groupBy,openArray[U],proc(U)"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#groupBy%2CopenArray%5BU%5D%2Cproc%28U%29"><span class="Identifier">groupBy</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">,</span> <span class="Identifier">U</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">arr</span><span class="Other">:</span> <span class="Identifier">openArray</span><span class="Other">[</span><span class="Identifier">U</span><span class="Other">]</span><span class="Other">;</span> <span class="Identifier">group</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">x</span><span class="Other">:</span> <span class="Identifier">U</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">TableRef</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">,</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">U</span><span class="Other">]</span><span class="Other">]</span></pre></dt>
+<a id="groupBy,openArray[S],proc(S)"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#groupBy%2CopenArray%5BS%5D%2Cproc%28S%29"><span class="Identifier">groupBy</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">,</span> <span class="Identifier">S</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">arr</span><span class="Other">:</span> <span class="Identifier">openArray</span><span class="Other">[</span><span class="Identifier">S</span><span class="Other">]</span><span class="Other">;</span> <span class="Identifier">group</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">x</span><span class="Other">:</span> <span class="Identifier">S</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">TableRef</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">,</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">S</span><span class="Other">]</span><span class="Other">]</span></pre></dt>
 <dd>
 
+classify the element of type T by group function S -&gt; T and return a table mapping T to seq[S]
+<p><strong class="examples_text">Examples:</strong></p>
+<pre class="listing"><span class="Keyword">import</span>
+  <span class="Identifier">tables</span>
 
+<span class="Keyword">let</span> <span class="Identifier">x</span> <span class="Other">=</span> <span class="Other">[</span><span class="DecNumber">1</span><span class="Other">,</span> <span class="DecNumber">2</span><span class="Other">,</span> <span class="DecNumber">3</span><span class="Other">,</span> <span class="DecNumber">4</span><span class="Other">,</span> <span class="DecNumber">5</span><span class="Other">]</span>
+<span class="Keyword">let</span> <span class="Identifier">y</span> <span class="Other">=</span> <span class="Identifier">x</span><span class="Other">.</span><span class="Identifier">groupBy</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">x</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">=</span>
+  <span class="Keyword">if</span> <span class="Identifier">x</span> <span class="Keyword">mod</span> <span class="DecNumber">2</span> <span class="Operator">==</span> <span class="DecNumber">0</span><span class="Other">:</span>
+    <span class="Identifier">result</span> <span class="Other">=</span> <span class="StringLit">&quot;even&quot;</span>
+  <span class="Keyword">else</span><span class="Other">:</span>
+    <span class="Identifier">result</span> <span class="Other">=</span> <span class="StringLit">&quot;odd&quot;</span>
+<span class="Identifier">assert</span> <span class="Identifier">y</span><span class="Other">[</span><span class="Other">]</span> <span class="Operator">==</span> <span class="Other">{</span><span class="StringLit">&quot;even&quot;</span><span class="Other">:</span> <span class="Operator">@</span><span class="Other">[</span><span class="DecNumber">2</span><span class="Other">,</span> <span class="DecNumber">4</span><span class="Other">]</span><span class="Other">,</span> <span class="StringLit">&quot;odd&quot;</span><span class="Other">:</span> <span class="Operator">@</span><span class="Other">[</span><span class="DecNumber">1</span><span class="Other">,</span> <span class="DecNumber">3</span><span class="Other">,</span> <span class="DecNumber">5</span><span class="Other">]</span><span class="Other">}</span><span class="Other">.</span><span class="Identifier">toTable</span></pre>
 
 </dd>
 <a id="liftSeq,proc(T)"></a>
@@ -968,7 +979,7 @@ Reverse iterator
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2019-09-07 07:17:17 UTC</small>
+        <small>Made with Nim. Generated: 2019-09-07 08:34:50 UTC</small>
       </div>
     </div>
   </div>

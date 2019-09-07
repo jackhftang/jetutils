@@ -17,11 +17,13 @@ template vectorize*(f,T,S: untyped): untyped =
   runnableExamples:
     vectorize(`+`,int,int)
     assert [1,2] + [3,4] == @[4,6]
+    assert 1 + [2,3] == @[3,4]
+    assert [1,2] + 3 == @[4,5]
   runnableExamples:
     vectorize(`+`,int,int)
     vectorize(`*`,int,int)
     let x = [1,2,3]
-    assert (1+x) * 4 == 4 + 4*x
+    assert (1+x) * 4 == 4*x + 4
   type
     outType = typeof(f(new(T)[], new(S)[]))
   proc `f`(xs: openArray[T], ys: openArray[S]): seq[outType] =
