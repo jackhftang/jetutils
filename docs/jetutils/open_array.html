@@ -916,6 +916,15 @@ lift a function over seq
 
 <span class="Keyword">let</span> <span class="Identifier">y</span> <span class="Other">=</span> <span class="Operator">@</span><span class="Other">[</span><span class="DecNumber">1</span><span class="Other">,</span> <span class="DecNumber">2</span><span class="Other">,</span> <span class="DecNumber">3</span><span class="Other">]</span> <span class="Operator">|&gt;</span> <span class="Identifier">liftSeq</span> <span class="Identifier">double</span>
 <span class="Identifier">assert</span> <span class="Identifier">y</span> <span class="Operator">==</span> <span class="Operator">@</span><span class="Other">[</span><span class="DecNumber">2</span><span class="Other">,</span> <span class="DecNumber">4</span><span class="Other">,</span> <span class="DecNumber">6</span><span class="Other">]</span></pre>
+<p><strong class="examples_text">Examples:</strong></p>
+<pre class="listing"><span class="Keyword">template</span> <span class="Other">`</span><span class="Operator">|&gt;</span><span class="Other">`</span><span class="Other">(</span><span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">f</span><span class="Other">:</span> <span class="Identifier">untyped</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span> <span class="Other">=</span>
+  <span class="Identifier">f</span><span class="Other">(</span><span class="Identifier">x</span><span class="Other">)</span>
+
+<span class="Keyword">proc</span> <span class="Identifier">double</span><span class="Other">(</span><span class="Identifier">x</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> <span class="Other">=</span>
+  <span class="DecNumber">2</span> <span class="Operator">*</span> <span class="Identifier">x</span>
+
+<span class="Keyword">let</span> <span class="Identifier">y</span> <span class="Other">=</span> <span class="Operator">@</span><span class="Other">[</span><span class="Operator">@</span><span class="Other">[</span><span class="DecNumber">1</span><span class="Other">,</span> <span class="DecNumber">2</span><span class="Other">,</span> <span class="DecNumber">3</span><span class="Other">]</span><span class="Other">,</span> <span class="Operator">@</span><span class="Other">[</span><span class="DecNumber">4</span><span class="Other">,</span> <span class="DecNumber">5</span><span class="Other">]</span><span class="Other">]</span> <span class="Operator">|&gt;</span> <span class="Identifier">liftSeq</span> <span class="Other">(</span><span class="Identifier">liftSeq</span> <span class="Identifier">double</span><span class="Other">)</span>
+<span class="Identifier">assert</span> <span class="Identifier">y</span> <span class="Operator">==</span> <span class="Operator">@</span><span class="Other">[</span><span class="Operator">@</span><span class="Other">[</span><span class="DecNumber">2</span><span class="Other">,</span> <span class="DecNumber">4</span><span class="Other">,</span> <span class="DecNumber">6</span><span class="Other">]</span><span class="Other">,</span> <span class="Operator">@</span><span class="Other">[</span><span class="DecNumber">8</span><span class="Other">,</span> <span class="DecNumber">10</span><span class="Other">]</span><span class="Other">]</span></pre>
 
 </dd>
 <a id="each,openArray[T],proc(T)"></a>
@@ -959,7 +968,7 @@ Reverse iterator
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2019-09-07 04:24:50 UTC</small>
+        <small>Made with Nim. Generated: 2019-09-07 07:17:17 UTC</small>
       </div>
     </div>
   </div>
