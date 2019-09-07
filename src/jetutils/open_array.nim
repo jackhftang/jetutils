@@ -63,9 +63,10 @@ proc groupBy*[T,U](arr: openArray[U], group: proc(x:U): T): TableRef[T,seq[U]] =
 proc liftSeq*[T,S](f: proc (x: T): S {.closure.}): proc(xs: seq[T]): seq[S] =
   ## lift a function over seq
   runnableExamples:
+    template `|>`(x, f : untyped): untyped = f(x)
     proc double(x: int): int = 2*x
-    let y = @[1,2,3] |> map double
-    check y == @[2,4,6]
+    let y = @[1,2,3] |> liftSeq double
+    assert y == @[2,4,6]
   result = proc (xs: seq[T]): seq[S] = 
     for x in xs: result.add(f(x))
   
@@ -73,7 +74,7 @@ proc each*[T](xs: openArray[T], f: proc(x: T)) =
   ## similar to for statement, but accept a procedure
   runnableExamples:
     var i = 1
-    [1,2,3].each do (x:int) :
+    [1,2,3].each proc (x:int) =
       assert x == i
       inc i
   for x in xs: f(x) 
