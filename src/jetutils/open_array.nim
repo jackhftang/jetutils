@@ -1,6 +1,11 @@
 import tables
 
-proc cmp*[T](a,b: openArray[T]): int =
+proc cmp*[I,T](a,b: array[I,T]): int =
+  for i, x in a:
+    let c = cmp(x, b[i])
+    if c != 0: return c
+
+proc cmp*[T](a,b: seq[T]): int =
   ## compare elements from left to right until the first unequal, shorter and smaller.
   runnableExamples:
     assert cmp(@[1,2],@[2,1]) == -1
@@ -17,7 +22,11 @@ proc cmp*[T](a,b: openArray[T]): int =
   if la < lb: return -1
   if la > lb: return 1
 
-proc `<`*[T](a,b: openArray[T]): bool = 
+proc `<`*[I,T](a,b: array[I,T]): bool =
+  ## equivalent to `cmp(a,b) < 0`
+  cmp(a,b) < 0
+
+proc `<`*[T](a,b: seq[T]): bool = 
   ## equivalent to `cmp(a,b) < 0`
   cmp(a,b) < 0
 

@@ -826,10 +826,14 @@ function main() {
 <li>
   <a class="reference reference-toplevel" href="#12" id="62">Procs</a>
   <ul class="simple simple-toc-section">
-      <li><a class="reference" href="#cmp%2CopenArray%5BT%5D%2CopenArray%5BT%5D"
-    title="cmp[T](a, b: openArray[T]): int"><wbr />cmp<span class="attachedType"></span></a></li>
-  <li><a class="reference" href="#%3C%2CopenArray%5BT%5D%2CopenArray%5BT%5D"
-    title="`&lt;`[T](a, b: openArray[T]): bool"><wbr />`&lt;`<span class="attachedType"></span></a></li>
+      <li><a class="reference" href="#cmp%2Carray%5BI%2CT%5D%2Carray%5BI%2CT%5D"
+    title="cmp[I, T](a, b: array[I, T]): int"><wbr />cmp<span class="attachedType"></span></a></li>
+  <li><a class="reference" href="#cmp%2Cseq%5BT%5D%5BT%5D%2Cseq%5BT%5D%5BT%5D"
+    title="cmp[T](a, b: seq[T]): int"><wbr />cmp<span class="attachedType"></span></a></li>
+  <li><a class="reference" href="#%3C%2Carray%5BI%2CT%5D%2Carray%5BI%2CT%5D"
+    title="`&lt;`[I, T](a, b: array[I, T]): bool"><wbr />`&lt;`<span class="attachedType"></span></a></li>
+  <li><a class="reference" href="#%3C%2Cseq%5BT%5D%5BT%5D%2Cseq%5BT%5D%5BT%5D"
+    title="`&lt;`[T](a, b: seq[T]): bool"><wbr />`&lt;`<span class="attachedType"></span></a></li>
   <li><a class="reference" href="#argmin%2CopenArray%5BT%5D"
     title="argmin[T](arr: openArray[T]): int"><wbr />argmin<span class="attachedType"></span></a></li>
   <li><a class="reference" href="#argmax%2CopenArray%5BT%5D"
@@ -862,8 +866,15 @@ function main() {
   <div class="section" id="12">
 <h1><a class="toc-backref" href="#12">Procs</a></h1>
 <dl class="item">
-<a id="cmp,openArray[T],openArray[T]"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#cmp%2CopenArray%5BT%5D%2CopenArray%5BT%5D"><span class="Identifier">cmp</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">a</span><span class="Other">,</span> <span class="Identifier">b</span><span class="Other">:</span> <span class="Identifier">openArray</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span></pre></dt>
+<a id="cmp,array[I,T],array[I,T]"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#cmp%2Carray%5BI%2CT%5D%2Carray%5BI%2CT%5D"><span class="Identifier">cmp</span></a><span class="Other">[</span><span class="Identifier">I</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">a</span><span class="Other">,</span> <span class="Identifier">b</span><span class="Other">:</span> <span class="Identifier">array</span><span class="Other">[</span><span class="Identifier">I</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span></pre></dt>
+<dd>
+
+
+
+</dd>
+<a id="cmp,seq[T][T],seq[T][T]"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#cmp%2Cseq%5BT%5D%5BT%5D%2Cseq%5BT%5D%5BT%5D"><span class="Identifier">cmp</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">a</span><span class="Other">,</span> <span class="Identifier">b</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span></pre></dt>
 <dd>
 
 compare elements from left to right until the first unequal, shorter and smaller.
@@ -874,8 +885,15 @@ compare elements from left to right until the first unequal, shorter and smaller
 <span class="Identifier">assert</span> <span class="Identifier">cmp</span><span class="Other">(</span><span class="Operator">@</span><span class="Other">[</span><span class="DecNumber">1</span><span class="Other">,</span> <span class="DecNumber">2</span><span class="Other">,</span> <span class="DecNumber">3</span><span class="Other">]</span><span class="Other">,</span> <span class="Operator">@</span><span class="Other">[</span><span class="DecNumber">1</span><span class="Other">,</span> <span class="DecNumber">2</span><span class="Other">]</span><span class="Other">)</span> <span class="Operator">==</span> <span class="DecNumber">1</span></pre>
 
 </dd>
-<a id="<,openArray[T],openArray[T]"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#%3C%2CopenArray%5BT%5D%2CopenArray%5BT%5D"><span class="Identifier">`&lt;`</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">a</span><span class="Other">,</span> <span class="Identifier">b</span><span class="Other">:</span> <span class="Identifier">openArray</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span></pre></dt>
+<a id="<,array[I,T],array[I,T]"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#%3C%2Carray%5BI%2CT%5D%2Carray%5BI%2CT%5D"><span class="Identifier">`&lt;`</span></a><span class="Other">[</span><span class="Identifier">I</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">a</span><span class="Other">,</span> <span class="Identifier">b</span><span class="Other">:</span> <span class="Identifier">array</span><span class="Other">[</span><span class="Identifier">I</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span></pre></dt>
+<dd>
+
+equivalent to <tt class="docutils literal"><span class="pre">cmp(a,b) &lt; 0</span></tt>
+
+</dd>
+<a id="<,seq[T][T],seq[T][T]"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#%3C%2Cseq%5BT%5D%5BT%5D%2Cseq%5BT%5D%5BT%5D"><span class="Identifier">`&lt;`</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">a</span><span class="Other">,</span> <span class="Identifier">b</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span></pre></dt>
 <dd>
 
 equivalent to <tt class="docutils literal"><span class="pre">cmp(a,b) &lt; 0</span></tt>
@@ -979,7 +997,7 @@ Reverse iterator
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2019-09-07 08:34:50 UTC</small>
+        <small>Made with Nim. Generated: 2019-09-09 09:18:48 UTC</small>
       </div>
     </div>
   </div>
