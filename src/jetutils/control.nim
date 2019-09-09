@@ -37,7 +37,7 @@ proc bsearchMin*[T:Ordinal](a, b: T, predicate: proc (mi: T): bool  {.closure.})
   bsearchMinIt(a,b,predicate it)
 
 template times*(n:int, body:untyped) = 
-  ## Repeat block of code N times. It transform to a for loop, so `break` statement work as normal
+  ## Repeat block of code N times, can `break` earlier.
   runnableExamples:
     var i = 0 
     3.times:
@@ -45,6 +45,17 @@ template times*(n:int, body:untyped) =
       inc i
     assert i == 2
   for i in 1..n:
+    body
+
+template forever*(body: untyped) = 
+  ## loop forever, can `break`.
+  runnableExamples:
+    var i = 0
+    forever:
+      if i == 5: break
+      inc i
+    assert i == 5
+  while true:
     body
 
 iterator `..<`*[T](b: T): T =

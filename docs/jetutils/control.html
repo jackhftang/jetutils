@@ -864,6 +864,8 @@ function main() {
     title="bsearchMinIt(a, b: typed; code: untyped): untyped"><wbr />bsearch<wbr />Min<wbr />It<span class="attachedType"></span></a></li>
   <li><a class="reference" href="#times.t%2Cint%2Cuntyped"
     title="times(n: int; body: untyped)"><wbr />times<span class="attachedType"></span></a></li>
+  <li><a class="reference" href="#forever.t%2Cuntyped"
+    title="forever(body: untyped)"><wbr />forever<span class="attachedType"></span></a></li>
   <li><a class="reference" href="#forIt.t%2Ctyped%2Cuntyped"
     title="forIt(xs: typed; body: untyped): untyped"><wbr />for<wbr />It<span class="attachedType"></span></a></li>
 
@@ -1022,7 +1024,7 @@ infix operator of function application f(x)
 <dt><pre><span class="Keyword">template</span> <a href="#times.t%2Cint%2Cuntyped"><span class="Identifier">times</span></a><span class="Other">(</span><span class="Identifier">n</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">body</span><span class="Other">:</span> <span class="Identifier">untyped</span><span class="Other">)</span></pre></dt>
 <dd>
 
-Repeat block of code N times. It transform to a for loop, so <tt class="docutils literal"><span class="pre">break</span></tt> statement work as normal
+Repeat block of code N times, can <tt class="docutils literal"><span class="pre">break</span></tt> earlier.
 <p><strong class="examples_text">Examples:</strong></p>
 <pre class="listing"><span class="Keyword">var</span> <span class="Identifier">i</span> <span class="Other">=</span> <span class="DecNumber">0</span>
 <span class="DecNumber">3</span><span class="Other">.</span><span class="Identifier">times</span><span class="Other">:</span>
@@ -1030,6 +1032,20 @@ Repeat block of code N times. It transform to a for loop, so <tt class="docutils
     <span class="Keyword">break</span>
   <span class="Identifier">inc</span> <span class="Identifier">i</span>
 <span class="Identifier">assert</span> <span class="Identifier">i</span> <span class="Operator">==</span> <span class="DecNumber">2</span></pre>
+
+</dd>
+<a id="forever.t,untyped"></a>
+<dt><pre><span class="Keyword">template</span> <a href="#forever.t%2Cuntyped"><span class="Identifier">forever</span></a><span class="Other">(</span><span class="Identifier">body</span><span class="Other">:</span> <span class="Identifier">untyped</span><span class="Other">)</span></pre></dt>
+<dd>
+
+loop forever, can <tt class="docutils literal"><span class="pre">break</span></tt>.
+<p><strong class="examples_text">Examples:</strong></p>
+<pre class="listing"><span class="Keyword">var</span> <span class="Identifier">i</span> <span class="Other">=</span> <span class="DecNumber">0</span>
+<span class="Identifier">forever</span><span class="Other">:</span>
+  <span class="Keyword">if</span> <span class="Identifier">i</span> <span class="Operator">==</span> <span class="DecNumber">5</span><span class="Other">:</span>
+    <span class="Keyword">break</span>
+  <span class="Identifier">inc</span> <span class="Identifier">i</span>
+<span class="Identifier">assert</span> <span class="Identifier">i</span> <span class="Operator">==</span> <span class="DecNumber">5</span></pre>
 
 </dd>
 <a id="forIt.t,typed,untyped"></a>
@@ -1066,7 +1082,7 @@ iterate over xs with default variable named <tt class="docutils literal"><span c
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2019-09-09 09:18:46 UTC</small>
+        <small>Made with Nim. Generated: 2019-09-09 14:51:53 UTC</small>
       </div>
     </div>
   </div>
