@@ -6,7 +6,7 @@ license       = "MIT"
 srcDir        = "src"
 
 # Dependencies
-requires "nim >= 0.19.0"
+requires "nim >= 0.20.2"
 
 # variables
 const testDir       = "tests"
