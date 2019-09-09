@@ -830,6 +830,10 @@ function main() {
     title="vectorize(f, T: untyped): untyped"><wbr />vectorize<span class="attachedType"></span></a></li>
   <li><a class="reference" href="#vectorize.t%2Cuntyped%2Cuntyped%2Cuntyped"
     title="vectorize(f, T, S: untyped): untyped"><wbr />vectorize<span class="attachedType"></span></a></li>
+  <li><a class="reference" href="#nestedUnary.t%2Cuntyped"
+    title="nestedUnary(f: untyped): untyped"><wbr />nested<wbr />Unary<span class="attachedType"></span></a></li>
+  <li><a class="reference" href="#nestedBinary.t%2Cuntyped"
+    title="nestedBinary(f: untyped): untyped"><wbr />nested<wbr />Binary<span class="attachedType"></span></a></li>
 
   </ul>
 </li>
@@ -854,7 +858,7 @@ make a unary operation applicable over seq[T]
   <span class="DecNumber">2</span> <span class="Operator">*</span> <span class="Identifier">x</span>
 
 <span class="Identifier">vectorize</span><span class="Other">(</span><span class="Identifier">double</span><span class="Other">,</span> <span class="Identifier">int</span><span class="Other">)</span>
-<span class="Identifier">assert</span> <span class="Identifier">double</span><span class="Other">(</span><span class="Other">[</span><span class="DecNumber">1</span><span class="Other">,</span> <span class="DecNumber">2</span><span class="Other">,</span> <span class="DecNumber">3</span><span class="Other">]</span><span class="Other">)</span> <span class="Operator">==</span> <span class="Operator">@</span><span class="Other">[</span><span class="DecNumber">2</span><span class="Other">,</span> <span class="DecNumber">4</span><span class="Other">,</span> <span class="DecNumber">6</span><span class="Other">]</span></pre>
+<span class="Identifier">assert</span> <span class="Identifier">double</span><span class="Other">(</span><span class="Other">[</span><span class="DecNumber">1</span><span class="Other">,</span> <span class="DecNumber">2</span><span class="Other">,</span> <span class="DecNumber">3</span><span class="Other">]</span><span class="Other">)</span> <span class="Operator">==</span> <span class="Other">[</span><span class="DecNumber">2</span><span class="Other">,</span> <span class="DecNumber">4</span><span class="Other">,</span> <span class="DecNumber">6</span><span class="Other">]</span></pre>
 
 </dd>
 <a id="vectorize.t,untyped,untyped,untyped"></a>
@@ -874,6 +878,20 @@ make a binary operation applicable over (seq[T], seq[S])
 <span class="Identifier">assert</span> <span class="Other">(</span><span class="DecNumber">1</span> <span class="Operator">+</span> <span class="Identifier">x</span><span class="Other">)</span> <span class="Operator">*</span> <span class="DecNumber">4</span> <span class="Operator">==</span> <span class="DecNumber">4</span> <span class="Operator">*</span> <span class="Identifier">x</span> <span class="Operator">+</span> <span class="DecNumber">4</span></pre>
 
 </dd>
+<a id="nestedUnary.t,untyped"></a>
+<dt><pre><span class="Keyword">template</span> <a href="#nestedUnary.t%2Cuntyped"><span class="Identifier">nestedUnary</span></a><span class="Other">(</span><span class="Identifier">f</span><span class="Other">:</span> <span class="Identifier">untyped</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
+<dd>
+
+operator f must be close i.e. T -&gt; T 
+
+</dd>
+<a id="nestedBinary.t,untyped"></a>
+<dt><pre><span class="Keyword">template</span> <a href="#nestedBinary.t%2Cuntyped"><span class="Identifier">nestedBinary</span></a><span class="Other">(</span><span class="Identifier">f</span><span class="Other">:</span> <span class="Identifier">untyped</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
+<dd>
+
+operator f must be closed i.e. T -&gt; T -&gt; T
+
+</dd>
 
 </dl></div>
 
@@ -884,7 +902,7 @@ make a binary operation applicable over (seq[T], seq[S])
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2019-09-07 08:34:49 UTC</small>
+        <small>Made with Nim. Generated: 2019-09-09 09:18:47 UTC</small>
       </div>
     </div>
   </div>

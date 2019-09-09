@@ -29,6 +29,7 @@ iterator permutation*(n: int): seq[int] =
   # todo: use heaps algorithm
   var res = newSeq[int](n)
   for i in 0 ..< n: res[i] = i
+  
   var cont = true
   while cont:
     yield res

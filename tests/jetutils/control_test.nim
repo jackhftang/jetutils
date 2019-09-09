@@ -81,6 +81,19 @@ suite "control":
       inc i
     check i == 11
 
+  test "forIt nested":
+    forIt 'a'..'c':
+      assert it is char
+      (1..3).forIt:
+        assert it is int
+  
+  test "forIt early break":
+    var i = 0
+    forIt ..10:
+      if it > 5: break
+      i += 1
+    assert i == 6
+
   test "3 |> double |> plus1": 
     proc double(x: int): int = 2*x
     proc plus1(x: int): int = x + 1
