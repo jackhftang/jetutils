@@ -907,8 +907,13 @@ function main() {
 <dt><pre><span class="Keyword">iterator</span> <a href="#..%3C.i%2CT"><span class="Identifier">`..&lt;`</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">b</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span></pre></dt>
 <dd>
 
-Only high part need to be specified<pre class="listing"><span class="Keyword">for</span> <span class="Identifier">i</span> <span class="Keyword">in</span> <span class="Operator">..&lt;</span> <span class="Identifier">arr</span><span class="Operator">.</span><span class="Identifier">len</span><span class="Punctuation">:</span>
-  <span class="Identifier">echo</span> <span class="Identifier">arr</span><span class="Punctuation">[</span><span class="Identifier">i</span><span class="Punctuation">]</span></pre>
+Only high part need to be specified, low part is T(0) 
+<p><strong class="examples_text">Examples:</strong></p>
+<pre class="listing"><span class="Keyword">let</span> <span class="Identifier">arr</span> <span class="Other">=</span> <span class="Other">[</span><span class="DecNumber">1</span><span class="Other">,</span> <span class="DecNumber">2</span><span class="Other">,</span> <span class="DecNumber">3</span><span class="Other">]</span>
+<span class="Keyword">var</span> <span class="Identifier">sum</span> <span class="Other">=</span> <span class="DecNumber">0</span>
+<span class="Keyword">for</span> <span class="Identifier">i</span> <span class="Keyword">in</span> <span class="Operator">..&lt;</span><span class="Identifier">arr</span><span class="Other">.</span><span class="Identifier">len</span><span class="Other">:</span>
+  <span class="Identifier">sum</span> <span class="Operator">+=</span> <span class="Identifier">arr</span><span class="Other">[</span><span class="Identifier">i</span><span class="Other">]</span>
+<span class="Identifier">assert</span> <span class="Identifier">sum</span> <span class="Operator">==</span> <span class="DecNumber">6</span></pre>
 
 </dd>
 
@@ -986,6 +991,12 @@ transform to a serial of  <tt class="docutils literal"><span class="pre">for</sp
 <dd>
 
 infix operator of function application f(x)
+<p><strong class="examples_text">Examples:</strong></p>
+<pre class="listing"><span class="Keyword">proc</span> <span class="Identifier">double</span><span class="Other">(</span><span class="Identifier">x</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> <span class="Other">=</span>
+  <span class="DecNumber">2</span> <span class="Operator">*</span> <span class="Identifier">x</span>
+
+<span class="Keyword">let</span> <span class="Identifier">x</span> <span class="Other">=</span> <span class="DecNumber">3</span>
+<span class="Identifier">assert</span> <span class="Identifier">x</span> <span class="Operator">|&gt;</span> <span class="Identifier">double</span> <span class="Operator">|&gt;</span> <span class="Identifier">double</span> <span class="Operator">==</span> <span class="Identifier">double</span><span class="Other">(</span><span class="Identifier">double</span><span class="Other">(</span><span class="Identifier">x</span><span class="Other">)</span><span class="Other">)</span></pre>
 
 </dd>
 
@@ -1011,20 +1022,38 @@ infix operator of function application f(x)
 <dt><pre><span class="Keyword">template</span> <a href="#times.t%2Cint%2Cuntyped"><span class="Identifier">times</span></a><span class="Other">(</span><span class="Identifier">n</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">body</span><span class="Other">:</span> <span class="Identifier">untyped</span><span class="Other">)</span></pre></dt>
 <dd>
 
-Repeat block of code N times. Example:<pre class="listing"><span class="FloatNumber">3.</span><span class="Identifier">times</span><span class="Punctuation">:</span>
-  <span class="Identifier">echo</span> <span class="StringLit">&quot;ho&quot;</span></pre>
+Repeat block of code N times. It transform to a for loop, so <tt class="docutils literal"><span class="pre">break</span></tt> statement work as normal
+<p><strong class="examples_text">Examples:</strong></p>
+<pre class="listing"><span class="Keyword">var</span> <span class="Identifier">i</span> <span class="Other">=</span> <span class="DecNumber">0</span>
+<span class="DecNumber">3</span><span class="Other">.</span><span class="Identifier">times</span><span class="Other">:</span>
+  <span class="Keyword">if</span> <span class="Identifier">i</span> <span class="Operator">==</span> <span class="DecNumber">2</span><span class="Other">:</span>
+    <span class="Keyword">break</span>
+  <span class="Identifier">inc</span> <span class="Identifier">i</span>
+<span class="Identifier">assert</span> <span class="Identifier">i</span> <span class="Operator">==</span> <span class="DecNumber">2</span></pre>
 
 </dd>
 <a id="forIt.t,typed,untyped"></a>
 <dt><pre><span class="Keyword">template</span> <a href="#forIt.t%2Ctyped%2Cuntyped"><span class="Identifier">forIt</span></a><span class="Other">(</span><span class="Identifier">xs</span><span class="Other">:</span> <span class="Identifier">typed</span><span class="Other">;</span> <span class="Identifier">body</span><span class="Other">:</span> <span class="Identifier">untyped</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
 <dd>
 
-iterate over xs with default variable named <tt class="docutils literal"><span class="pre">it</span></tt>
+iterate over xs with default variable named <tt class="docutils literal"><span class="pre">it</span></tt> forIt can be nested and break early.
 <p><strong class="examples_text">Examples:</strong></p>
 <pre class="listing"><span class="Keyword">var</span> <span class="Identifier">i</span> <span class="Other">=</span> <span class="DecNumber">0</span>
 <span class="Other">(</span><span class="Operator">..</span><span class="DecNumber">10</span><span class="Other">)</span><span class="Other">.</span><span class="Identifier">forIt</span><span class="Other">:</span>
   <span class="Identifier">assert</span> <span class="Identifier">it</span> <span class="Operator">==</span> <span class="Identifier">i</span>
   <span class="Identifier">inc</span> <span class="Identifier">i</span></pre>
+<p><strong class="examples_text">Examples:</strong></p>
+<pre class="listing"><span class="Keyword">var</span> <span class="Identifier">i</span> <span class="Other">=</span> <span class="DecNumber">0</span>
+<span class="Identifier">forIt</span> <span class="Operator">..</span><span class="DecNumber">10</span><span class="Other">:</span>
+  <span class="Keyword">if</span> <span class="Identifier">it</span> <span class="Operator">&gt;</span> <span class="DecNumber">5</span><span class="Other">:</span>
+    <span class="Keyword">break</span>
+  <span class="Identifier">i</span> <span class="Operator">+=</span> <span class="DecNumber">1</span>
+<span class="Identifier">assert</span> <span class="Identifier">i</span> <span class="Operator">==</span> <span class="DecNumber">6</span></pre>
+<p><strong class="examples_text">Examples:</strong></p>
+<pre class="listing"><span class="Identifier">forIt</span> <span class="CharLit">'a'</span> <span class="Operator">..</span> <span class="CharLit">'c'</span><span class="Other">:</span>
+  <span class="Identifier">assert</span> <span class="Identifier">it</span> <span class="Keyword">is</span> <span class="Identifier">char</span>
+  <span class="Other">(</span><span class="DecNumber">1</span> <span class="Operator">..</span> <span class="DecNumber">3</span><span class="Other">)</span><span class="Other">.</span><span class="Identifier">forIt</span><span class="Other">:</span>
+    <span class="Identifier">assert</span> <span class="Identifier">it</span> <span class="Keyword">is</span> <span class="Identifier">int</span></pre>
 
 </dd>
 
@@ -1037,7 +1066,7 @@ iterate over xs with default variable named <tt class="docutils literal"><span c
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2019-09-07 08:34:49 UTC</small>
+        <small>Made with Nim. Generated: 2019-09-09 09:18:46 UTC</small>
       </div>
     </div>
   </div>

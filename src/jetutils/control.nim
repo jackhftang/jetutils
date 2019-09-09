@@ -37,21 +37,24 @@ proc bsearchMin*[T:Ordinal](a, b: T, predicate: proc (mi: T): bool  {.closure.})
   bsearchMinIt(a,b,predicate it)
 
 template times*(n:int, body:untyped) = 
-  ## Repeat block of code N times.
-  ## Example:
-  ##
-  ## .. code-block:: nim
-  ##  3.times:
-  ##    echo "ho"
+  ## Repeat block of code N times. It transform to a for loop, so `break` statement work as normal
+  runnableExamples:
+    var i = 0 
+    3.times:
+      if i == 2: break
+      inc i
+    assert i == 2
   for i in 1..n:
     body
 
 iterator `..<`*[T](b: T): T =
-  ## Only high part need to be specified 
-  ## 
-  ## .. code-block:: nim 
-  ##  for i in ..< arr.len: 
-  ##    echo arr[i]
+  ## Only high part need to be specified, low part is T(0) 
+  runnableExamples:
+    let arr = [1,2,3]
+    var sum = 0
+    for i in ..< arr.len: 
+      sum += arr[i]
+    assert sum == 6
   var i = T(0)
   while i < b:
     yield i
@@ -256,13 +259,29 @@ macro forZip*(args: varargs[untyped]): untyped =
   
 template forIt*(xs: typed, body: untyped): untyped = 
   ## iterate over xs with default variable named `it`
+  ## forIt can be nested and break early.
   runnableExamples:
     var i = 0
     (..10).forIt: 
       assert it == i
       inc i
+  runnableExamples:
+    var i = 0
+    forIt ..10:
+      if it > 5: break
+      i += 1
+    assert i == 6
+  runnableExamples:
+    forIt 'a'..'c':
+      assert it is char
+      (1..3).forIt:
+        assert it is int
   for it {.inject.} in xs: body
 
 macro `|>`*(x, f : untyped): untyped = 
   ## infix operator of function application f(x)
+  runnableExamples:
+    proc double(x:int): int = 2*x
+    let x = 3 
+    assert x |> double |> double == double(double(x))
   newCall(f,x)
