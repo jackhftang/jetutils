@@ -842,8 +842,14 @@ function main() {
     title="groupBy[T, S](arr: openArray[S]; group: proc (x: S): T): TableRef[T, seq[S]]"><wbr />group<wbr />By<span class="attachedType"></span></a></li>
   <li><a class="reference" href="#liftSeq%2Cproc%28T%29"
     title="liftSeq[T, S](f: proc (x: T): S {.closure.}): proc (xs: seq[T]): seq[S]"><wbr />lift<wbr />Seq<span class="attachedType"></span></a></li>
+  <li><a class="reference" href="#map%2CopenArray%5BT%5D%2Cproc%28int%2CT%29"
+    title="map[T](xs: openArray[T]; f: proc (i: int; x: T): T): seq[T]"><wbr />map<span class="attachedType"></span></a></li>
   <li><a class="reference" href="#each%2CopenArray%5BT%5D%2Cproc%28T%29"
     title="each[T](xs: openArray[T]; f: proc (x: T))"><wbr />each<span class="attachedType"></span></a></li>
+  <li><a class="reference" href="#each%2CopenArray%5BT%5D%2Cproc%28int%2CT%29"
+    title="each[T](xs: openArray[T]; f: proc (i: int; x: T)): void"><wbr />each<span class="attachedType"></span></a></li>
+  <li><a class="reference" href="#newSeq%2Cint%2Cproc%28int%29"
+    title="newSeq[T](length: int; f: proc (i: int): T): seq[T]"><wbr />new<wbr />Seq<span class="attachedType"></span></a></li>
 
   </ul>
 </li>
@@ -956,6 +962,13 @@ lift a function over seq
 <span class="Identifier">assert</span> <span class="Identifier">y</span> <span class="Operator">==</span> <span class="Operator">@</span><span class="Other">[</span><span class="Operator">@</span><span class="Other">[</span><span class="DecNumber">2</span><span class="Other">,</span> <span class="DecNumber">4</span><span class="Other">,</span> <span class="DecNumber">6</span><span class="Other">]</span><span class="Other">,</span> <span class="Operator">@</span><span class="Other">[</span><span class="DecNumber">8</span><span class="Other">,</span> <span class="DecNumber">10</span><span class="Other">]</span><span class="Other">]</span></pre>
 
 </dd>
+<a id="map,openArray[T],proc(int,T)"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#map%2CopenArray%5BT%5D%2Cproc%28int%2CT%29"><span class="Identifier">map</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">xs</span><span class="Other">:</span> <span class="Identifier">openArray</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">;</span> <span class="Identifier">f</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">i</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">x</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span></pre></dt>
+<dd>
+
+
+
+</dd>
 <a id="each,openArray[T],proc(T)"></a>
 <dt><pre><span class="Keyword">proc</span> <a href="#each%2CopenArray%5BT%5D%2Cproc%28T%29"><span class="Identifier">each</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">xs</span><span class="Other">:</span> <span class="Identifier">openArray</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">;</span> <span class="Identifier">f</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">x</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">)</span></pre></dt>
 <dd>
@@ -966,6 +979,24 @@ similar to for statement, but accept a procedure
 <span class="Other">[</span><span class="DecNumber">1</span><span class="Other">,</span> <span class="DecNumber">2</span><span class="Other">,</span> <span class="DecNumber">3</span><span class="Other">]</span><span class="Other">.</span><span class="Identifier">each</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">x</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span> <span class="Other">=</span>
   <span class="Identifier">assert</span> <span class="Identifier">x</span> <span class="Operator">==</span> <span class="Identifier">i</span>
   <span class="Identifier">inc</span> <span class="Identifier">i</span></pre>
+
+</dd>
+<a id="each,openArray[T],proc(int,T)"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#each%2CopenArray%5BT%5D%2Cproc%28int%2CT%29"><span class="Identifier">each</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">xs</span><span class="Other">:</span> <span class="Identifier">openArray</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">;</span> <span class="Identifier">f</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">i</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">x</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">void</span></pre></dt>
+<dd>
+
+
+
+</dd>
+<a id="newSeq,int,proc(int)"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#newSeq%2Cint%2Cproc%28int%29"><span class="Identifier">newSeq</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">length</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">f</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">i</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span></pre></dt>
+<dd>
+
+create a new Seq[T] with initialization 
+<p><strong class="examples_text">Examples:</strong></p>
+<pre class="listing"><span class="Keyword">let</span> <span class="Identifier">s</span> <span class="Other">=</span> <span class="Identifier">newSeq</span><span class="Other">(</span><span class="DecNumber">3</span><span class="Other">,</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">i</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> <span class="Other">=</span>
+  <span class="Identifier">i</span><span class="Other">)</span>
+<span class="Identifier">assert</span> <span class="Identifier">s</span> <span class="Operator">==</span> <span class="Operator">@</span><span class="Other">[</span><span class="DecNumber">0</span><span class="Other">,</span> <span class="DecNumber">1</span><span class="Other">,</span> <span class="DecNumber">2</span><span class="Other">]</span></pre>
 
 </dd>
 
@@ -997,7 +1028,7 @@ Reverse iterator
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2019-09-09 14:51:54 UTC</small>
+        <small>Made with Nim. Generated: 2019-09-12 13:08:16 UTC</small>
       </div>
     </div>
   </div>
