@@ -95,6 +95,11 @@ proc liftSeq*[T,S](f: proc (x: T): S {.closure.}): proc(xs: seq[T]): seq[S] =
   result = proc (xs: seq[T]): seq[S] = 
     for x in xs: result.add(f(x))
   
+proc map*[T](xs: openArray[T], f: proc(i: int, x: T): T): seq[T] = 
+  result.setLen(xs.len)
+  for i in 0 ..< result.len: 
+    result[i] = f(i,xs[i])
+
 proc each*[T](xs: openArray[T], f: proc(x: T)) =
   ## similar to for statement, but accept a procedure
   runnableExamples:
@@ -103,3 +108,14 @@ proc each*[T](xs: openArray[T], f: proc(x: T)) =
       assert x == i
       inc i
   for x in xs: f(x) 
+
+proc each*[T](xs: openArray[T], f: proc(i: int, x: T)): void = 
+  for i in 0 ..< xs.len: f(i,xs[i])
+
+proc newSeq*[T](length: int, f: proc(i:int): T): seq[T] = 
+  ## create a new Seq[T] with initialization 
+  runnableExamples:
+    let s = newSeq(3, proc(i:int): int = i)
+    assert s == @[0,1,2]
+  result.setLen(length)
+  for i in 0 ..< length: result[i] = f(i)
