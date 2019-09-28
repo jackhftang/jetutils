@@ -49,21 +49,59 @@ proc argmin*[T](arr: openArray[T]): int =
   ## Find the minimum index of minimum value in an array.
   ## Return -1 if empty.
   if arr.len == 0: return -1 
-  var val = arr[result]
+  var val = arr[0]
   for i in 1..arr.high:
     if arr[i] < val:
       result = i 
       val = arr[i] 
 
+proc argmins*[T](arr: openArray[T]): seq[int] = 
+  ## Find all index of minimum value in an array.
+  if arr.len == 0: return @[]
+  var val = arr[0]
+  result = @[0]
+  for i in 1..arr.high:
+    if arr[i] < val:
+      result = @[i]
+      val = arr[i] 
+    elif arr[i] == val:
+      result.add i
+
 proc argmax*[T](arr: openArray[T]): int = 
-  ## Find the maximum index of maximum value in an array.
+  ## Find the minimum index of maximum value in an array.
   ## Return -1 if empty. 
   if arr.len == 0: return -1 
-  var val = arr[result]
+  var val = arr[0]
   for i in 1..arr.high:
-    if arr[i] >= val:
+    if arr[i] > val:
       result = i 
       val = arr[i] 
+
+proc argmaxs*[T](arr: openArray[T]): seq[int] = 
+  ## Find all index of maximum value in an array.
+  if arr.len == 0: return @[]
+  var val = arr[0]
+  result = @[0]
+  for i in 1..arr.high:
+    if arr[i] > val:
+      result = @[i] 
+      val = arr[i]
+    elif arr[i] == val:
+      result.add i
+
+proc position*[T](arr: openArray[T], e: T): int =
+  ## find the minimum index of e in arr
+  result = -1 
+  for i, x in arr: 
+    if x == e:
+      result = i
+      break
+
+proc positions*[T](arr: openArray[T], e: T): seq[int] =
+  ## find all index of e in arr
+  for i, x in arr:
+    if x == e:
+      result.add i
 
 proc groupBy*[T,S](arr: openArray[S], group: proc(x:S): T): TableRef[T,seq[S]] = 
   ## classify the element of type T by group function S -> T and return a table mapping T to seq[S]
@@ -112,6 +150,14 @@ proc each*[T](xs: openArray[T], f: proc(x: T)) =
 proc each*[T](xs: openArray[T], f: proc(i: int, x: T)): void = 
   for i in 0 ..< xs.len: f(i,xs[i])
 
+template eachIt*(xs: typed, f: untyped) =
+  runnableExamples:
+    var i = 0
+    (..10).eachIt: 
+      assert it == i
+      inc i
+  for it {.inject.} in xs: f 
+
 proc newSeq*[T](length: int, f: proc(i:int): T): seq[T] = 
   ## create a new Seq[T] with initialization 
   runnableExamples:
@@ -119,3 +165,29 @@ proc newSeq*[T](length: int, f: proc(i:int): T): seq[T] =
     assert s == @[0,1,2]
   result.setLen(length)
   for i in 0 ..< length: result[i] = f(i)
+
+proc summation*[T](xs: openArray[T]): T =
+  runnableExamples:
+    assert summation([1,2,3]) == 6
+  for x in xs: result += x
+
+proc first*[T](xs: openArray[T]): T = xs[0]
+
+proc last*[T](xs: openArray[T]): T = xs[^1]
+
+proc fold*[T,S](xs: openArray[T], init: S, f: proc(a: S, b: T): S): S =
+  runnableExamples:
+    import sugar
+    let y = [1,2,3].fold(0, (a,b) => a+b)
+    assert y == 6
+  result = init
+  for x in xs: result = f(result, x)
+
+proc unroll*[T,S](xs: openArray[T], init: S, f: proc(a,b: T): S): seq[S] = 
+  runnableExamples:
+    import sugar
+    let y = [1,2,3].unroll(0, (a,b) => a+b)
+    assert y == @[0,1,3,6]
+  result = newSeq[int](xs.len + 1)
+  result[0] = init
+  for i, x in xs: result[i+1] = f(result[i], x)

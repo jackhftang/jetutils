@@ -268,14 +268,9 @@ macro forZip*(args: varargs[untyped]): untyped =
   stmts.add forStmt
   result = newBlockStmt(stmts)
   
-template forIt*(xs: typed, body: untyped): untyped = 
+template forIt*(xs: untyped, body: untyped): untyped = 
   ## iterate over xs with default variable named `it`
   ## forIt can be nested and break early.
-  runnableExamples:
-    var i = 0
-    (..10).forIt: 
-      assert it == i
-      inc i
   runnableExamples:
     var i = 0
     forIt ..10:
@@ -289,6 +284,8 @@ template forIt*(xs: typed, body: untyped): untyped =
         assert it is int
   for it {.inject.} in xs: body
 
+
+# TODO: not useful for nim, because it could be just x.f 
 macro `|>`*(x, f : untyped): untyped = 
   ## infix operator of function application f(x)
   runnableExamples:
